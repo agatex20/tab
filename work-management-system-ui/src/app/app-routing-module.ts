@@ -1,18 +1,18 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import { LoginDataComponent } from './components/login-data/login-data.component';
-import {MainPageComponent} from './components/main-page/main-page.component';
+import { LoginDataComponent } from './modules/login/components/login-page/login-data.component';
+import {MainPageComponent} from "./modules/main-page/components/main-page/main-page.component";
+import {AuthGuard} from "./authentication/auth.guard";
 
 
 const routes: Routes = [
-  {path: 'main', component: MainPageComponent},
-  {path: '', component: LoginDataComponent},
-  
+  {path: '', redirectTo: '/main', pathMatch: 'full'},
+  {path: 'login', component: LoginDataComponent, },
+  {path: 'main', component: MainPageComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule  { }
