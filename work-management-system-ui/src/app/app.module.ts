@@ -9,12 +9,15 @@ import {LoginDataComponent} from './modules/login/components/login-page/login-da
 import {AppRoutingModule} from './app-routing-module';
 import { NavigationBarComponent } from './modules/navbar/components/navigation-bar/navigation-bar.component';
 import {MainPageComponent} from "./modules/main-page/components/main-page/main-page.component";
-import { ContextComponent } from './modules/main-page/components/context/context/context.component';
+import { ContextComponent } from './modules/main-page/components/context/context.component';
 import {AuthGuard} from "./authentication/auth.guard";
-import { MainComponent } from './modules/user-leaves/components/main/main.component';
-import { LeavesListComponent } from './modules/user-leaves/components/leaves-list/leaves-list.component';
-import { LeaveFormComponent } from './modules/user-leaves/components/leave-form/leave-form.component';
-
+import { AddWorkerComponent } from './modules/add-worker/components/add-worker/add-worker.component';
+import { HelpComponent } from './modules/help/components/help/help.component';
+import { LeaveRequestsComponent } from './modules/leave-requests/components/leave-requests/leave-requests.component';
+import { LeavesComponent } from './modules/leaves/components/leaves/leaves.component';
+import { ReportComponent } from './modules/report/components/report/report.component';
+import { RolesComponent } from './modules/roles/components/roles/roles.component';
+import { SchemeComponent } from './modules/scheme/components/scheme/scheme.component';
 
 @NgModule({
   declarations: [
@@ -24,9 +27,13 @@ import { LeaveFormComponent } from './modules/user-leaves/components/leave-form/
     MainPageComponent,
     NavigationBarComponent,
     ContextComponent,
-    MainComponent,
-    LeavesListComponent,
-    LeaveFormComponent,
+    AddWorkerComponent,
+    HelpComponent,
+    LeaveRequestsComponent,
+    LeavesComponent,
+    ReportComponent,
+    RolesComponent,
+    SchemeComponent,
   ],
   imports: [
     BrowserModule,
