@@ -1,1 +1,24 @@
-<p>add-worker works!</p>
+<div class="container">
+    <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
+      <form class="add-form" (ngSubmit)="onSubmit()">
+        <div class="form-control">
+            <label style="margin-left: 5px;"  for="firstname"  >Imię</label>
+            <input type="text" name="firstname" id="firstname" [(ngModel)]="firstname" placeholder="firstname"/>
+          </div>
+          <div class="form-control">
+            <label style="margin-left: 5px;"  for="lastname"  >Nazwisko</label>
+            <input type="text" name="lastname" id="lastname" [(ngModel)]="lastname" placeholder="lastname"/>
+          </div>
+        <div class="form-control">
+          <label style="margin-left: 5px;"  for="email"  >Email</label>
+          <input type="text" name="email" id="email" [(ngModel)]="email" placeholder="email"/>
+        </div>
+        <div class="form-control">
+          <label  style="margin-left: 5px;" for="password" >Haslo</label>
+          <input type="text" name="password" [(ngModel)]="password" id="password" placeholder="haslo"/>
+        </div>
+        
+        <input type="submit" value="Dodaj" class="btn btn-block" style="background-color:goldenrod" >
+  
+      </form>
+  </div>

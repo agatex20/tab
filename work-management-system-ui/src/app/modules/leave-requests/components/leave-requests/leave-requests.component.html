@@ -1,1 +1,9 @@
-<p>leave-requests works!</p>
+<mat-form-field >
+    <mat-label>Enter a date range</mat-label>
+    <mat-date-range-input  [rangePicker]="myPicker">
+      <input matStartDate placeholder="Start date">
+      <input matEndDate placeholder="End date">
+    </mat-date-range-input>
+    <mat-datepicker-toggle matSuffix [for]="myPicker"></mat-datepicker-toggle>
+    <mat-date-range-picker #myPicker></mat-date-range-picker>
+  </mat-form-field>

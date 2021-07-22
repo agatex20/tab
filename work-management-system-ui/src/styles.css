@@ -1,4 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap");
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber';
+@import '~angular-material-datepicker/src/datepicker/calendar.component.scss';
+@include calendar-theme($theme);
 
 * {
   box-sizing: border-box;
@@ -8,6 +11,7 @@
 
 body {
   font-family: "Poppins", sans-serif;
+  background-color: lightgrey;
 }
 
 .container {
@@ -74,3 +78,5 @@ body {
   flex: 2;
   height: 20px;
 }
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

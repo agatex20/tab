@@ -3,6 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
+
 import {AppComponent} from './app.component';
 import {ButtonComponent} from './utils/components/button/button.component';
 import {LoginDataComponent} from './modules/login/components/login-page/login-data.component';
@@ -18,6 +19,10 @@ import { LeavesComponent } from './modules/leaves/components/leaves/leaves.compo
 import { ReportComponent } from './modules/report/components/report/report.component';
 import { RolesComponent } from './modules/roles/components/roles/roles.component';
 import { SchemeComponent } from './modules/scheme/components/scheme/scheme.component';
+
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -40,6 +45,12 @@ import { SchemeComponent } from './modules/scheme/components/scheme/scheme.compo
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    BrowserModule,
+
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
