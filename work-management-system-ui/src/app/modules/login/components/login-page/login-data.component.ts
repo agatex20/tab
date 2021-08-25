@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
-
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
+import { AlertService } from 'src/app/alerts/services/alert.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login-data',
@@ -8,22 +10,27 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./login-data.component.css']
 })
 export class LoginDataComponent implements OnInit {
-login: string = '';
-password: string = '';
+login: string;
+password: string;
 title: string = 'Zaloguj';
+returnUrl: string;
 
-
-
-  constructor(private router: Router,
-              ) {
-
-
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private alertService: AlertService
+  ) {
+    if (this.authenticationService.currentUserValue) {
+      //this.router.navigate(['main']);
+    }
   }
 
   ngOnInit(): void {
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'main';
   }
-  onSubmit(){
 
+  onSubmit() {
     if(!this.login)
     {
       alert('Wpisz login');
@@ -40,11 +47,14 @@ title: string = 'Zaloguj';
       password: this.password
     };
 
-    this.router.navigate(['main']);
-    this.login = '';
-    this.password = '';
-
-
+    this.authenticationService.login(this.login, this.password)
+      .pipe(first())
+      .subscribe(
+        (data: any) => {
+            this.router.navigate([this.returnUrl]);
+        },
+        (error: any) => {
+            this.alertService.error(error);
+        });
   }
-
 }

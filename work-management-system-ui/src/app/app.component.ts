@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 
+import { Router } from '@angular/router';
+
+import { AuthenticationService } from './authentication/authentication.service';
+import { User } from './user/user.model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
