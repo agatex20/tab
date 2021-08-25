@@ -10,6 +10,7 @@ import { first } from 'rxjs/operators';
   styleUrls: ['./login-data.component.css']
 })
 export class LoginDataComponent implements OnInit {
+loading = false;
 login: string;
 password: string;
 title: string = 'Zaloguj';
@@ -22,7 +23,7 @@ returnUrl: string;
     private alertService: AlertService
   ) {
     if (this.authenticationService.currentUserValue) {
-      //this.router.navigate(['main']);
+      this.router.navigate(['main']);
     }
   }
 
@@ -47,14 +48,16 @@ returnUrl: string;
       password: this.password
     };
 
+    this.loading = true;
     this.authenticationService.login(this.login, this.password)
       .pipe(first())
       .subscribe(
-        (data: any) => {
+        data => {
             this.router.navigate([this.returnUrl]);
         },
-        (error: any) => {
+        error => {
             this.alertService.error(error);
+            this.loading = false;
         });
   }
 }

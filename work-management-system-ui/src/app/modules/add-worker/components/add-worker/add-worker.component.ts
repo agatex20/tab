@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
-import { HttpClient } from  "@angular/common/http";
+import { AlertService } from 'src/app/alerts/services/alert.service';
+import { UserService } from 'src/app/user/user.service';
+import { AuthenticationService } from 'src/app/authentication/authentication.service';
+import { User } from 'src/app/user/user.model';
 
 @Component({
   selector: 'app-add-worker',
@@ -9,28 +13,30 @@ import { HttpClient } from  "@angular/common/http";
   styleUrls: ['./add-worker.component.css']
 })
 export class AddWorkerComponent implements OnInit {
-
-email: string = '';
-password: string = '';
-firstname: string = '';
-lastname: string = '';
+loading = false;
+username: string;
+password: string;
+firstname: string;
+lastname: string;
 title: string = 'Dodaj pracownika';
 
 
 
-  constructor(private router: Router,private http: HttpClient) {
-
-
-  }
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
+    private alertService: AlertService
+  ) {}
 
   ngOnInit(): void {
     
   }
   onSubmit(){
 
-    if(!this.email)
+    if(!this.username)
     {
-      alert('Wpisz email');
+      alert('Wpisz login');
       return;
     }
 
@@ -49,37 +55,26 @@ title: string = 'Dodaj pracownika';
       alert('Wpisz nazwisko');
       return;
     }
-    const newAddWorkerData = {
-      email: this.email,
-      password: this.password,
-      firstname: this.firstname,
-      lastname: this.lastname
-    };
-    const headers = { 'Authorization': 'Bearer my-token', 'My-Custom-Header': 'foobar' }
-    this.http.post<AddWorkerComponent>("https://workmanagementsystemtab.azurewebsites.net/Users",
-    {
-      "email": this.email,
-      "password": this.password,
-      "firstName": this.firstname,
-      "lastName": this.lastname
-    })
-    .subscribe(
-    data  => {
-    console.log("POST Request is successful ", data);
-    },
-    error  => {
-    
-    console.log("Error", error);
-    
-    }
-    
-    );
-    this.router.navigate(['main']);
-    this.firstname = '';
-    this.lastname = '';
-    this.email = '';
-    this.password = '';
 
+    let newUser: User = new User;
+    newUser.username = this.username;
+    newUser.password = this.password;
+    newUser.firstName = this.firstname;
+    newUser.lastName = this.lastname;
 
+    this.alertService.clear();
+    
+    this.loading = true;
+    this.userService.register(newUser)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.alertService.success('Registration successful', true);
+          this.router.navigate(['/login']);
+        },
+        error => {
+          this.alertService.error(error);
+          this.loading = false;
+       });
   }
 }

@@ -9,7 +9,7 @@
         <label  style="margin-left: 5px;" for="password" >Haslo</label>
         <input type="text" name="password" [(ngModel)]="password" id="password" placeholder="haslo"/>
       </div>
-      <input type="submit" value="Zaloguj" class="btn btn-block" style="background-color:goldenrod" >
+      <input [disabled]="loading" type="submit" value="Zaloguj" class="btn btn-block">
     </form>
 </div>
 

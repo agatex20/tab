@@ -47,6 +47,14 @@ body {
   display: block;
   width: 100%;
   text-align: center;
+  background-color:goldenrod;
+}
+
+.btn-block[disabled] {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: lightgray;
 }
 
 .form-control {

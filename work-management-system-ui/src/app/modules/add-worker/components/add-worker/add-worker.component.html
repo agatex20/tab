@@ -10,15 +10,15 @@
             <input type="text" name="lastname" id="lastname" [(ngModel)]="lastname" placeholder="nazwisko"/>
           </div>
         <div class="form-control">
-          <label style="margin-left: 5px;"  for="email"  >Email</label>
-          <input type="text" name="email" id="email" [(ngModel)]="email" placeholder="email"/>
+          <label style="margin-left: 5px;"  for="username"  >Login</label>
+          <input type="text" name="username" id="username" [(ngModel)]="username" placeholder="login"/>
         </div>
         <div class="form-control">
           <label  style="margin-left: 5px;" for="password" >Haslo</label>
           <input type="text" name="password" [(ngModel)]="password" id="password" placeholder="hasło"/>
         </div>
         
-        <input type="submit" value="Dodaj" class="btn btn-block" style="background-color:goldenrod" >
+        <input [disabled]="loading" type="submit" value="Dodaj" class="btn btn-block" style="background-color:goldenrod" >
   
       </form>
       

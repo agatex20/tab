@@ -12,6 +12,7 @@ import {
 import { catchError } from 'rxjs/operators';
 
 import { AuthenticationService } from '../authentication/authentication.service';
+import { AlertService } from '../alerts/services/alert.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
@@ -26,6 +27,7 @@ export class ErrorInterceptor implements HttpInterceptor {
       }
       
       const error = err.error.message || err.statusText;
+      alert(error);
       return throwError(error);
   }));
   }

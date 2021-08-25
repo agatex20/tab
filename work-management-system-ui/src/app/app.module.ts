@@ -3,6 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
+//////////////////////////
+import { fakeBackendProvider} from './fakebackend/fake-backend.interceptor';
+/////////////////////////
+
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './utils/components/button/button.component';
 import { LoginDataComponent } from './modules/login/components/login-page/login-data.component';
@@ -47,14 +51,14 @@ import { AddRequestComponent } from './modules/add-request/add-request.component
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    BrowserModule,
-
-
-  
+    BrowserModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    ///////////////////
+    fakeBackendProvider
+    ///////////////
   ],
   bootstrap: [AppComponent]
 })
