@@ -20,6 +20,8 @@ import { SchemeComponent } from './modules/scheme/components/scheme/scheme.compo
 import { AlertComponent } from './alerts/components/alert/alert.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor'
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { AddRequestComponent } from './modules/add-request/add-request.component';
+
 
 
 @NgModule({
@@ -38,12 +40,17 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
     RolesComponent,
     SchemeComponent,
     AlertComponent,
+    AddRequestComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
+    BrowserModule,
+
+
+  
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
