@@ -5,7 +5,9 @@ import { MainPageComponent } from "./modules/main-page/components/main-page/main
 import { AddWorkerComponent } from './modules/add-worker/components/add-worker/add-worker.component';
 import { AuthGuard } from "./authentication/auth.guard";
 import { LeaveRequestsComponent } from './modules/leave-requests/components/leave-requests/leave-requests.component';
-
+import { LeavesComponent } from './modules/leaves/components/leaves/leaves.component';
+import { AddRequestComponent } from './modules/add-request/add-request.component';
+import { RolesComponent } from './modules/roles/components/roles/roles.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/main', pathMatch: 'full'},
@@ -13,6 +15,10 @@ const routes: Routes = [
   {path: 'add-worker', component: AddWorkerComponent,},
   {path: 'leave-requests', component: LeaveRequestsComponent,},
   {path: 'main', component: MainPageComponent, canActivate: [AuthGuard]},
+  {path: 'leaves', component: LeavesComponent,},
+  {path: 'add-request',component:AddRequestComponent},
+  {path: 'roles',component:RolesComponent},
+  
 ];
 
 @NgModule({

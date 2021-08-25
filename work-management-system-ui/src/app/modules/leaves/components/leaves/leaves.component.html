@@ -1,1 +1,25 @@
-<p>leaves works!</p>
+<div class="container">
+
+<div>
+    <select style="width: 100%;margin-bottom: 4%; margin-left: 5px; font-size: large;" class="form-select" [(ngModel)]="selectedType">
+        <option *ngFor="let n of leaveTypes">{{ n }}</option>
+    </select>
+</div>
+<h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
+<table style="width: 100%; text-align: left;"> 
+    <thead>
+        <tr>
+            <th >Typ</th>
+            <th >Data początkowa</th>
+            <th >Data końcowa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let people of data">
+            <td>{{people.type}}</td>
+            <td>{{people.startDate}}</td>
+            <td>{{people.endDate}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>

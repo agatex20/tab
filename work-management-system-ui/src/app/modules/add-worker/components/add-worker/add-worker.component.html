@@ -3,11 +3,11 @@
       <form class="add-form" (ngSubmit)="onSubmit()">
         <div class="form-control">
             <label style="margin-left: 5px;"  for="firstname"  >Imię</label>
-            <input type="text" name="firstname" id="firstname" [(ngModel)]="firstname" placeholder="firstname"/>
+            <input type="text" name="firstname" id="firstname" [(ngModel)]="firstname" placeholder="imię"/>
           </div>
           <div class="form-control">
             <label style="margin-left: 5px;"  for="lastname"  >Nazwisko</label>
-            <input type="text" name="lastname" id="lastname" [(ngModel)]="lastname" placeholder="lastname"/>
+            <input type="text" name="lastname" id="lastname" [(ngModel)]="lastname" placeholder="nazwisko"/>
           </div>
         <div class="form-control">
           <label style="margin-left: 5px;"  for="email"  >Email</label>
@@ -15,10 +15,11 @@
         </div>
         <div class="form-control">
           <label  style="margin-left: 5px;" for="password" >Haslo</label>
-          <input type="text" name="password" [(ngModel)]="password" id="password" placeholder="haslo"/>
+          <input type="text" name="password" [(ngModel)]="password" id="password" placeholder="hasło"/>
         </div>
         
         <input type="submit" value="Dodaj" class="btn btn-block" style="background-color:goldenrod" >
   
       </form>
+      
   </div>

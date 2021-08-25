@@ -19,10 +19,9 @@ import { LeavesComponent } from './modules/leaves/components/leaves/leaves.compo
 import { ReportComponent } from './modules/report/components/report/report.component';
 import { RolesComponent } from './modules/roles/components/roles/roles.component';
 import { SchemeComponent } from './modules/scheme/components/scheme/scheme.component';
+import { AddRequestComponent } from './modules/add-request/add-request.component';
 
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -39,6 +38,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     ReportComponent,
     RolesComponent,
     SchemeComponent,
+    AddRequestComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,9 +47,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     AppRoutingModule,
     BrowserModule,
 
-    MatDatepickerModule,
-    MatFormFieldModule,
-    MatNativeDateModule
+
   
   ],
   providers: [],

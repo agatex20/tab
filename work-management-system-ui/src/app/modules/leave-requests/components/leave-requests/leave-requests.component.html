@@ -1,9 +1,26 @@
-<mat-form-field >
-    <mat-label>Enter a date range</mat-label>
-    <mat-date-range-input  [rangePicker]="myPicker">
-      <input matStartDate placeholder="Start date">
-      <input matEndDate placeholder="End date">
-    </mat-date-range-input>
-    <mat-datepicker-toggle matSuffix [for]="myPicker"></mat-datepicker-toggle>
-    <mat-date-range-picker #myPicker></mat-date-range-picker>
-  </mat-form-field>
+<div class="container">
+
+    <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
+    <table style="width: 100%; text-align: left;"> 
+        <thead>
+            <tr>
+                <th >Typ</th>
+                <th >Data początkowa</th>
+                <th >Data końcowa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let people of data">
+                <td>{{people.type}}</td>
+                <td>{{people.startDate}}</td>
+                <td>{{people.endDate}}</td>
+                <td style="width: 20%;"> <input  (ngSubmit)="onSubmit()" type="submit" value="Zatwierdź" class="btn btn-block" style="background-color:goldenrod; margin-top: 20px;"></td>
+                <td style="width: 20%;"> <input (ngSubmit)="onReject()" type="reject" value="Odrzuć" class="btn btn-block" style="background-color:goldenrod; margin-top: 20px;"></td>
+                <td> <select style="width: 100%; margin-left: 5px; font-size: large;" class="form-select" [(ngModel)]="people.selectedWorker">
+                    <option *ngFor="let n of workers">{{ n }}</option>
+                </select></td>
+                
+            </tr>
+        </tbody>
+    </table>
+    </div>

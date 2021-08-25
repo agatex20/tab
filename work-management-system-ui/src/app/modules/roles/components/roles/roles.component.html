@@ -1,1 +1,23 @@
-<p>roles works!</p>
+<div class="container">
+
+    
+    <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
+    <table style="width: 100%; text-align: left;"> 
+        <thead>
+            <tr>
+                <th >Typ</th>
+                <th >Data początkowa</th>
+                <th >Data końcowa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let people of data">
+                <td>{{people.type}}</td>
+                <td>{{people.startDate}}</td>
+                <td>{{people.endDate}}</td>
+                
+               
+            </tr>
+        </tbody>
+    </table>
+    </div>

@@ -7,7 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeavesComponent implements OnInit {
 
-  constructor() { }
+  title: string = 'Urlopy:';
+  leaveTypes = ['pracownik 1','pracownik 2','pracownik 3'];
+  selectedType: string = '';
+
+  data: Array<any>;constructor(){
+    this.data = [
+        { type: 'Urlop', startDate: '03.12.2021', endDate: '24.12.2021' },
+        { type: 'Urlop', startDate: '03.12.2021', endDate: '24.12.2021' },
+        { type: 'Urlop', startDate: '03.12.2021', endDate: '24.12.2021' },
+        { type: 'Urlop', startDate: '01.09.2021', endDate: '24.12.2021' }
+    ];
+}
+  
 
   ngOnInit(): void {
   }
