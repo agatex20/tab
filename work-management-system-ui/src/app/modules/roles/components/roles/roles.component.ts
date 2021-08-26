@@ -24,5 +24,7 @@ export class RolesComponent implements OnInit {
   onDelete():void{
 
   }
-  
+  Accept(){
+    
+  }
 }

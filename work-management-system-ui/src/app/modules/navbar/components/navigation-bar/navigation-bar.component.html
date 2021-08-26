@@ -1,6 +1,32 @@
 <div class="nav">
-  <label>{{title()}}</label>
 
   <!-- tu bedzie foreach dla kazdego odnosnika z tablicy -->
-<button (click)="logOut()" class="btn btn-block" style="background-color: lightgrey; height: 40px">wyloguj</button>
+<div>
+  <button (click)="logOut()" class="btn btn-block" style="background-color: gray;">Wyloguj</button>
+</div>
+<div>
+  <button  (click)="addRequest()" class="btn btn-block">Dodaj prośbę</button>
+</div>
+<div>
+  <button  (click)="addWorker()" class="btn btn-block">Dodaj pracownika</button>
+</div>
+<div>
+  <button  (click)="leaveRequests()" class="btn btn-block">Prośby o urlop</button>
+</div>
+<div>
+  <button  (click)="leaves()" class="btn btn-block">Urlopy</button>
+</div>
+<div>
+  <button  (click)="leavesTypes()" class="btn btn-block">Typy urlopów</button>
+</div>
+<div>
+  <button  (click)="report()" class="btn btn-block">Raport</button>
+</div>
+<div>
+  <button  (click)="roles()" class="btn btn-block">Role</button>
+</div>
+
+<div>
+  <button  (click)="help()" class="btn btn-block">pomoc</button>
+</div>
 </div>

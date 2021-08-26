@@ -37,4 +37,29 @@ export class NavigationBarComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
+  addRequest(){
+
+  }
+  addWorker(){
+    
+  }
+  leaveRequests(){
+
+  }
+
+  leaves(){
+
+  }
+  leavesTypes(){
+
+  }
+  report(){
+
+  }
+  roles(){
+    
+  }
+  help(){
+
+  }
 }

@@ -5,9 +5,19 @@
   padding: 0;
 }
 
+.root {
+  display: flex;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+   
+    
+  }
+  
 body {
   font-family: "Poppins", sans-serif;
   background-color: whitesmoke;
+  padding: 10px, 10px, 10px, 10px;
 }
 
 .container {
@@ -25,11 +35,10 @@ body {
 }
 .btn {
   display: inline-block;
-  background: #000;
   color: #fff;
   border: none;
-  padding: 10px 20px;
-  margin: 5px;
+  padding: 10px, 10px, 10px, 10px;
+  margin: 10px, 10px, 10px, 10px;
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
@@ -38,6 +47,9 @@ body {
   background-color:goldenrod; 
   margin-top: 20px;
   height: 40px;
+  align-self: center;
+  align-content: center;
+  
 }
 .btn:focus {
   outline: none;
@@ -59,7 +71,18 @@ body {
   text-align: center;
   background-color: lightgray;
 }
-
+.nav{
+  display: block;
+      height: 100%;
+      width: 15%;
+      position: fixed;
+      background-color: rgb(190, 144, 26);
+      list-style-type: none;
+      margin: 10;
+      overflow: auto;
+      padding-left: 10px;
+      padding-right: 10px;
+}
 .form-control {
   margin: 20px 0;
 }

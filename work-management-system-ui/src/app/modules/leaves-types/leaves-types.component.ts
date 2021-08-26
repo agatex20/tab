@@ -22,5 +22,7 @@ export class LeavesTypesComponent implements OnInit {
   onDelete():void{
 
   }
-  
+  Accept(){
+    
+  }
 }
