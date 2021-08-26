@@ -2,7 +2,9 @@
 
 <div class="select" style="width:200px;">
     <select id=standard-select style="margin-bottom: 4%; margin-left: 5px; " class="form-select" [(ngModel)]="selectedType">
-        <option *ngFor="let n of leaveTypes">{{ n }}</option>
+        <option *ngFor="let e of employees">
+            {{ e.firstName + " " + e.lastName }}
+        </option>
         <span class="focus"></span>
     </select>
 </div>
@@ -16,10 +18,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let people of data">
-            <td>{{people.type}}</td>
-            <td>{{people.startDate}}</td>
-            <td>{{people.endDate}}</td>
+        <tr *ngFor="let a of absences">
+            <td>{{a.type}}</td>
+            <td>{{a.startDate}}</td>
+            <td>{{a.endDate}}</td>
         </tr>
     </tbody>
 </table>
