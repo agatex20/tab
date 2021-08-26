@@ -20,6 +20,9 @@ import { ReportComponent } from './modules/report/components/report/report.compo
 import { RolesComponent } from './modules/roles/components/roles/roles.component';
 import { SchemeComponent } from './modules/scheme/components/scheme/scheme.component';
 import { AddRequestComponent } from './modules/add-request/add-request.component';
+import { LeavesTypesComponent } from './modules/leaves-types/leaves-types.component';
+import { AddLeavesTypeComponent } from './modules/add-leaves-type/add-leaves-type.component';
+import { AddRoleComponent } from './modules/add-role/add-role.component';
 
 
 
@@ -39,6 +42,9 @@ import { AddRequestComponent } from './modules/add-request/add-request.component
     RolesComponent,
     SchemeComponent,
     AddRequestComponent,
+    LeavesTypesComponent,
+    AddLeavesTypeComponent,
+    AddRoleComponent,
   ],
   imports: [
     BrowserModule,

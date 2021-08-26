@@ -5,16 +5,17 @@
 
             <div class="form-control">
                 <label style="margin-left: 5px;"  for="startDate"  >Początek urlopu</label>
-                <input type="text" name="startDate" id="startDate" [(ngModel)]="startDate" placeholder="data"/>
+                <input type="date" name="startDate" id="startDate" [(ngModel)]="startDate" placeholder="data"/>
             </div>
 
             <div class="form-control">
                 <label style="margin-left: 5px;"  for="endDate"  >Koniec urlopu</label>
-                <input type="text" name="endDate" id="endDate" [(ngModel)]="endDate" placeholder="data"/>
+                <input type="date" name="endDate" id="endDate" [(ngModel)]="endDate" placeholder="data"/>
             </div>
-            <div>
-                <select style="width: 100%; margin-left: 5px; font-size: large;" class="form-select" [(ngModel)]="selectedType">
+            <div class="select" style="width:200px;">
+                <select id=standard-select style="width: 100%; margin-left: 5px; font-size: large;" class="form-select" [(ngModel)]="selectedType">
                     <option *ngFor="let n of leaveTypes">{{ n }}</option>
+                    <span class="focus"></span>
                 </select>
             </div>
         <input type="submit" value="Wnioskuj" class="btn btn-block" style="background-color:goldenrod; margin-top: 20px;">

@@ -14,11 +14,14 @@
                 <td>{{people.type}}</td>
                 <td>{{people.startDate}}</td>
                 <td>{{people.endDate}}</td>
-                <td style="width: 20%;"> <input  (ngSubmit)="onSubmit()" type="submit" value="Zatwierdź" class="btn btn-block" style="background-color:goldenrod; margin-top: 20px;"></td>
-                <td style="width: 20%;"> <input (ngSubmit)="onReject()" type="reject" value="Odrzuć" class="btn btn-block" style="background-color:goldenrod; margin-top: 20px;"></td>
-                <td> <select style="width: 100%; margin-left: 5px; font-size: large;" class="form-select" [(ngModel)]="people.selectedWorker">
+                <td style="width: 20%;"> <button  (click)="onSubmit()" type="submit" value="Zatwierdź" class="btn btn-block">Zatwierdź</button></td>
+                <td style="width: 20%;"> <button  (click)="onReject()" type="reject" value="Odrzuć" class="btn btn-block">Odrzuć</button></td>
+                <td> <div class="select" style="width:200px;">
+                    <select id=standard-select style="width: 100%; margin-left: 5px; font-size: large;" class="form-select" [(ngModel)]="people.selectedWorker">
                     <option *ngFor="let n of workers">{{ n }}</option>
-                </select></td>
+                    <span class="focus"></span>
+                    
+                </select></div></td>
                 
             </tr>
         </tbody>
