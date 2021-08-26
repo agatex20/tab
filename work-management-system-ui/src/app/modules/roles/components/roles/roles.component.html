@@ -6,18 +6,22 @@
         <thead>
             <tr>
                 <th >Typ</th>
-                <th >Data początkowa</th>
-                <th >Data końcowa</th>
+                <th> value1</th>
+                <th >value2</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let people of data">
-                <td>{{people.type}}</td>
-                <td>{{people.startDate}}</td>
-                <td>{{people.endDate}}</td>
+                <td>{{people.role}}</td>
+                <td><input type="checkbox" ng-model="people.value1"></td>
+                <td><input type="checkbox" ng-model="people.value2"></td>
+                <td style="width: 20%;"> <button (click)="onDelete()" class="btn btn-block" style=" margin-top: 20px;">Usuń</button></td>
                 
                
             </tr>
         </tbody>
     </table>
+        <div>
+            <button  onclick="location.href = 'http://localhost:4200/add-role';"  class="btn btn-block">Dodaj</button>
+        </div>
     </div>

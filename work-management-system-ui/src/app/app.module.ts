@@ -25,6 +25,9 @@ import { AlertComponent } from './alerts/components/alert/alert.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor'
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AddRequestComponent } from './modules/add-request/add-request.component';
+import { LeavesTypesComponent } from './modules/leaves-types/leaves-types.component';
+import { AddLeavesTypeComponent } from './modules/add-leaves-type/add-leaves-type.component';
+import { AddRoleComponent } from './modules/add-role/add-role.component';
 
 
 
@@ -45,6 +48,9 @@ import { AddRequestComponent } from './modules/add-request/add-request.component
     SchemeComponent,
     AlertComponent,
     AddRequestComponent,
+    LeavesTypesComponent,
+    AddLeavesTypeComponent,
+    AddRoleComponent,
   ],
   imports: [
     BrowserModule,
