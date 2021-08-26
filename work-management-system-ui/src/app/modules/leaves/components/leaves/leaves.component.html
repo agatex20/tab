@@ -9,10 +9,11 @@
     </select>
 </div>
 <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
-<table style="width: 100%; text-align: left;"> 
+<table class="table"> 
     <thead>
         <tr>
-            <th >Typ</th>
+            <th>Typ</th>
+            <th>Imię Nazwisko</th>
             <th >Data początkowa</th>
             <th >Data końcowa</th>
         </tr>
@@ -20,6 +21,7 @@
     <tbody>
         <tr *ngFor="let a of absences">
             <td>{{a.type}}</td>
+            <td>lalal</td>
             <td>{{a.startDate}}</td>
             <td>{{a.endDate}}</td>
         </tr>

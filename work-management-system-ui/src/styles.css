@@ -214,3 +214,23 @@ select:focus + .focus {
 .select {
   position: relative;
 }
+.table{
+  width: 100%; 
+  text-align: center;
+}
+table, th , td {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+table tr:nth-child(even) {
+  background-color: lightgrey;
+}
+
+table tr:nth-child(odd) {
+  background-color: rgb(226, 226, 226);
+}
+th{
+  background-color: goldenrod;
+}

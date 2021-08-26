@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user/user.model';
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  title: string = 'Prośby o urlop:';
+  title: string = 'Raport';
   startDate: string;
   endDate: string;
   employees: User[];
@@ -17,6 +17,10 @@ export class ReportComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(){
+
   }
 
 }

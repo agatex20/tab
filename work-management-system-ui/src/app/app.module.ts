@@ -28,6 +28,7 @@ import { AddRequestComponent } from './modules/add-request/add-request.component
 import { LeavesTypesComponent } from './modules/leaves-types/leaves-types.component';
 import { AddLeavesTypeComponent } from './modules/add-leaves-type/add-leaves-type.component';
 import { AddRoleComponent } from './modules/add-role/add-role.component';
+import { ChangePasswordComponent } from './modules/change-password/change-password.component';
 
 
 
@@ -51,6 +52,7 @@ import { AddRoleComponent } from './modules/add-role/add-role.component';
     LeavesTypesComponent,
     AddLeavesTypeComponent,
     AddRoleComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     BrowserModule,
