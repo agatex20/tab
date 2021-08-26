@@ -1,8 +1,10 @@
 <div>
     <form class="add-form" (ngSubmit)="onSubmit()">   
         <div class="select" style="width:200px;">
-            <select  style="width: 100%; margin-left: 5px; font-size: large;" class="form-select" [(ngModel)]="r.employee">
-                <option *ngFor="let e of employees">{{e.username}}</option>
+            <select  style="width: 100%; margin-left: 5px; font-size: large;" class="form-select" [(ngModel)]="employee">
+                <option *ngFor="let e of employees">
+                    {{e.username}}
+                </option>
             <span class="focus"></span>
             </select>
         </div>        
@@ -14,7 +16,7 @@
             <label style="margin-left: 5px;"  for="endDate"  >Koniec urlopu</label>
             <input type="date" name="endDate" id="endDate" [(ngModel)]="endDate" placeholder="data"/>
         </div>
-    <input [disabled]="loading" type="submit" value="Generuj" class="btn btn-block">
+    <input type="submit" value="Generuj" class="btn btn-block">
 
 </form>
 
@@ -27,10 +29,10 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let a of abcences">
-            <td>{{people.type}}</td>
-            <td>{{people.startDate}}</td>
-            <td>{{people.endDate}}</td>
+        <tr *ngFor="let a of absences">
+            <td>{{a.type}}</td>
+            <td>{{a.startDate}}</td>
+            <td>{{a.endDate}}</td>
         </tr>
     </tbody>
 </table>

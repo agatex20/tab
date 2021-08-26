@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Absence } from 'src/app/models/absence/absence.model';
 import { LeaveRequest } from 'src/app/models/leave-requests/leave-request.model';
+import { User } from 'src/app/models/user/user.model';
 
 @Component({
   selector: 'app-report',
@@ -7,9 +9,11 @@ import { LeaveRequest } from 'src/app/models/leave-requests/leave-request.model'
   styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-  requests: LeaveRequest[];
   title: string = 'Prośby o urlop:';
-  employees = ['pracownik 1','pracownik 2','pracownik 3'];
+  startDate: string;
+  endDate: string;
+  employees: User[];
+  absences: Absence[]; 
   constructor() { }
 
   ngOnInit(): void {
