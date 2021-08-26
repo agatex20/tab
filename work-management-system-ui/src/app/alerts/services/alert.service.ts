@@ -28,6 +28,7 @@ export class AlertService {
   success(message: string, keepAfterRouteChange = false) {
     this.keepAfterRouteChange = keepAfterRouteChange;
     this.subject.next({ type: 'success', text: message });
+    alert(message);
   }
 
   error(message: string, keepAfterRouteChange = false) {

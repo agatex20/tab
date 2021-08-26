@@ -43,10 +43,6 @@ returnUrl: string;
       alert('Wpisz haslo');
       return;
     }
-    const newLoginData = {
-      login: this.login,
-      password: this.password
-    };
 
     this.loading = true;
     this.authenticationService.login(this.login, this.password)

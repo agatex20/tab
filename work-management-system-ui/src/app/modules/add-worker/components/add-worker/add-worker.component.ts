@@ -3,9 +3,8 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AlertService } from 'src/app/alerts/services/alert.service';
-import { UserService } from 'src/app/user/user.service';
-import { AuthenticationService } from 'src/app/authentication/authentication.service';
-import { User } from 'src/app/user/user.model';
+import { UserService } from 'src/app/models/user/user.service';
+import { User } from 'src/app/models/user/user.model';
 
 @Component({
   selector: 'app-add-worker',
@@ -24,7 +23,6 @@ title: string = 'Dodaj pracownika';
 
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService,
     private userService: UserService,
     private alertService: AlertService
   ) {}
@@ -56,11 +54,7 @@ title: string = 'Dodaj pracownika';
       return;
     }
 
-    let newUser: User = new User;
-    newUser.username = this.username;
-    newUser.password = this.password;
-    newUser.firstName = this.firstname;
-    newUser.lastName = this.lastname;
+    let newUser: User = new User(this.username, this.password, this.firstname, this.lastname);
 
     this.alertService.clear();
     
@@ -69,8 +63,7 @@ title: string = 'Dodaj pracownika';
       .pipe(first())
       .subscribe(
         data => {
-          this.alertService.success('Registration successful', true);
-          this.router.navigate(['/login']);
+          this.alertService.success('Dodano pracownika');
         },
         error => {
           this.alertService.error(error);
