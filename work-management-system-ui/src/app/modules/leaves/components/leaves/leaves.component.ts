@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
+import { AbsenceService } from 'src/app/models/absence/absence.service';
+import { User } from 'src/app/models/user/user.model';
+import { UserService } from 'src/app/models/user/user.service';
 
 @Component({
   selector: 'app-leaves',
@@ -6,22 +10,31 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./leaves.component.css']
 })
 export class LeavesComponent implements OnInit {
-
+  employees: User[];
   title: string = 'Urlopy:';
-  leaveTypes = ['pracownik 1','pracownik 2','pracownik 3'];
-  selectedType: string = '';
-
-  data: Array<any>;constructor(){
-    this.data = [
-        { type: 'Urlop', startDate: '03.12.2021', endDate: '24.12.2021' },
-        { type: 'Urlop', startDate: '03.12.2021', endDate: '24.12.2021' },
-        { type: 'Urlop', startDate: '03.12.2021', endDate: '24.12.2021' },
-        { type: 'Urlop', startDate: '01.09.2021', endDate: '24.12.2021' }
-    ];
+  selectedType: string;
+  absences: Array<any>;
+  
+  constructor(
+    private userService: UserService,
+    private absenceService: AbsenceService
+  ){
+    this.loadEmployees();
+    this.loadAbsences();
 }
   
-
   ngOnInit(): void {
   }
 
+  loadEmployees() {
+    this.userService.getAll()
+      .pipe(first())
+      .subscribe(employees => this.employees = employees);
+  }
+
+  loadAbsences() {
+    this.absenceService.getAll()
+      .pipe(first())
+      .subscribe(absences => this.absences = absences);
+  }
 }

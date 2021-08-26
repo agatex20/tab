@@ -14,11 +14,13 @@
                 <td>{{r.type}}</td>
                 <td>{{r.startDate}}</td>
                 <td>{{r.endDate}}</td>
-                <td style="width: 20%;"> <button  (click)="onSubmit()" type="submit" value="Zatwierdź" class="btn btn-block">Zatwierdź</button></td>
-                <td style="width: 20%;"> <button  (click)="onReject()" type="reject" value="Odrzuć" class="btn btn-block">Odrzuć</button></td>
+                <td style="width: 20%;"> <button  (click)="onSubmit(r)" type="submit" value="Zatwierdź" class="btn btn-block">Zatwierdź</button></td>
+                <td style="width: 20%;"> <button  (click)="onReject(r.id)" type="reject" value="Odrzuć" class="btn btn-block">Odrzuć</button></td>
                 <td>
                     <select style="width: 100%; margin-left: 5px; font-size: large;" class="form-select" [(ngModel)]="r.employee">
-                        <option *ngFor="let n of workers">{{n}}</option>
+                        <option *ngFor="let e of employees">
+                            {{e.firstName + " " + e.lastName}}
+                        </option>
                         <span class="focus"></span>
                     </select>
                 </td>           

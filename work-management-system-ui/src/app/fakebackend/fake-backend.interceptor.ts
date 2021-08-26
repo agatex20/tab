@@ -22,16 +22,19 @@ import { User } from '../models/user/user.model';
 
 let users = JSON.parse(localStorage.getItem('users') || "null") || [];
 let requests = JSON.parse(localStorage.getItem('requests') || "null") || [];
+let absences = JSON.parse(localStorage.getItem('absences') || "null") || [];
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
 
-  constructor() {
-    
-  }
+  constructor() {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const { url, method, headers, body } = request;
+
+    users = JSON.parse(localStorage.getItem('users') || "null") || [];
+    requests = JSON.parse(localStorage.getItem('requests') || "null") || [];
+    absences = JSON.parse(localStorage.getItem('absences') || "null") || [];
 
     // wrap in delayed observable to simulate server api call
     return of(null)
@@ -46,6 +49,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return authenticate();
         case url.endsWith('/users/register') && method === 'POST':
           return register();
+        case url.endsWith('/addAbsence') && method === 'POST':
+          return addAbsence();
         case url.endsWith('/users') && method === 'GET':
           return getUsers();
         case url.match(/\/users\/\d+$/) && method === 'DELETE':
@@ -54,6 +59,10 @@ export class FakeBackendInterceptor implements HttpInterceptor {
           return addRequest();
         case url.endsWith('/leaveRequests') && method === 'GET':
           return getRequests();
+        case url.match(/\/requests\/\d+$/) && method === 'DELETE':
+          return deleteRequest();
+        case url.endsWith('/absences') && method === 'GET':
+          return getAbsences();
         default:
           return next.handle(request);
       }    
@@ -118,6 +127,29 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     function getRequests() {
       if (!isLoggedIn()) return unauthorized();
       return ok(requests);
+    }
+
+    function deleteRequest() {
+      if (!isLoggedIn()) return unauthorized();
+
+      requests = requests.filter(x => x.id !== idFromUrl());
+      localStorage.setItem('requests', JSON.stringify(requests));
+      return ok();
+    }
+
+    function addAbsence() {
+      const absence = body;
+
+      absence.id = absences.length ? Math.max(...absences.map(x => x.id)) + 1 : 1;
+      absences.push(absence);
+      localStorage.setItem('absences', JSON.stringify(absences));
+
+      return ok();
+    }
+
+    function getAbsences() {
+      if (!isLoggedIn()) return unauthorized();
+      return ok(absences);
     }
 
   // helper functions
