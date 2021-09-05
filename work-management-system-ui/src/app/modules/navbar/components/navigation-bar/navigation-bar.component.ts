@@ -10,11 +10,9 @@ import {NavigationBarService} from "../../services/navigation-bar.service";
 })
 export class NavigationBarComponent implements OnInit {
 
-
   public title(): string {
     return this._title;
   }
-
 
   private _title: string = "title";
   private _referals: string[] = [];
@@ -41,7 +39,7 @@ export class NavigationBarComponent implements OnInit {
 
   }
   addWorker(){
-    
+
   }
   leaveRequests(){
 
@@ -57,7 +55,7 @@ export class NavigationBarComponent implements OnInit {
 
   }
   roles(){
-    
+
   }
   help(){
 

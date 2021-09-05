@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginDataComponent } from './modules/login/components/login-page/login-data.component';
-import { MainPageComponent } from "./modules/main-page/components/main-page/main-page.component";
 import { AddWorkerComponent } from './modules/add-worker/components/add-worker/add-worker.component';
 import { AuthGuard } from "./authentication/auth.guard";
 import { LeaveRequestsComponent } from './modules/leave-requests/components/leave-requests/leave-requests.component';
@@ -14,11 +13,13 @@ import { AddRoleComponent } from './modules/add-role/add-role.component';
 import { HelpComponent } from './modules/help/components/help/help.component';
 import { ReportComponent } from './modules/report/components/report/report.component';
 import { ChangePasswordComponent } from './modules/change-password/change-password.component';
+import { AppComponent } from "./app.component";
 
 const routes: Routes = [
-  {path: '', redirectTo: '/main', pathMatch: 'full'},
+  {path: '**', redirectTo: 'login'},
+  {path: '', redirectTo: 'main', pathMatch: 'full'},
   {path: 'login', component: LoginDataComponent},
-  {path: 'main', component: MainPageComponent, canActivate: [AuthGuard]},
+  {path: 'main', component: AppComponent},
   {path: 'add-worker', component: AddWorkerComponent, canActivate: [AuthGuard]},
   {path: 'leave-requests', component: LeaveRequestsComponent, canActivate: [AuthGuard]},
   {path: 'leaves', component: LeavesComponent, canActivate: [AuthGuard]},
@@ -29,8 +30,7 @@ const routes: Routes = [
   {path: 'add-role', component: AddRoleComponent, canActivate: [AuthGuard]},
   {path: 'help', component: HelpComponent, canActivate: [AuthGuard]},
   {path: 'report', component: ReportComponent, canActivate: [AuthGuard]},
-  {path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]},
-  {path: '**', redirectTo: 'login'}
+  {path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({

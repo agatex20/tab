@@ -1,1 +1,12 @@
-<router-outlet></router-outlet>
+<div class="d-flex container1">
+  <app-navigation-bar class="al-left"
+                      *ngIf="_service.IsLoggedIn">
+  </app-navigation-bar>
+
+  <div class="al-left">
+    <div class="container">
+      <router-outlet
+      ></router-outlet>
+    </div>
+  </div>
+</div>

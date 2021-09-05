@@ -12,8 +12,6 @@ import { ButtonComponent } from './utils/components/button/button.component';
 import { LoginDataComponent } from './modules/login/components/login-page/login-data.component';
 import { AppRoutingModule } from './app-routing-module';
 import { NavigationBarComponent } from './modules/navbar/components/navigation-bar/navigation-bar.component';
-import { MainPageComponent } from "./modules/main-page/components/main-page/main-page.component";
-import { ContextComponent } from './modules/main-page/components/context/context.component';
 import { AddWorkerComponent } from './modules/add-worker/components/add-worker/add-worker.component';
 import { HelpComponent } from './modules/help/components/help/help.component';
 import { LeaveRequestsComponent } from './modules/leave-requests/components/leave-requests/leave-requests.component';
@@ -37,9 +35,7 @@ import { ChangePasswordComponent } from './modules/change-password/change-passwo
     AppComponent,
     ButtonComponent,
     LoginDataComponent,
-    MainPageComponent,
     NavigationBarComponent,
-    ContextComponent,
     AddWorkerComponent,
     HelpComponent,
     LeaveRequestsComponent,

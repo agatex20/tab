@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { AuthenticationService } from './authentication/authentication.service';
 import { User } from './models/user/user.model';
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -11,5 +12,7 @@ import { User } from './models/user/user.model';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  constructor(public _service: AuthenticationService) {
+  }
 
 }
