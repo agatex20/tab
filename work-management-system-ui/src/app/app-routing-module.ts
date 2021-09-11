@@ -14,13 +14,12 @@ import { HelpComponent } from './modules/help/components/help/help.component';
 import { ReportComponent } from './modules/report/components/report/report.component';
 import { ChangePasswordComponent } from './modules/change-password/change-password.component';
 import { AppComponent } from "./app.component";
+import { PageNotFound } from "./utils/components/PageNotFound/page-not-found.component";
 
 const routes: Routes = [
-  {path: '**', redirectTo: 'login'},
-  {path: '', redirectTo: 'main', pathMatch: 'full'},
+  {path: '', component: AppComponent},
   {path: 'login', component: LoginDataComponent},
-  {path: 'main', component: AppComponent},
-  {path: 'add-worker', component: AddWorkerComponent, canActivate: [AuthGuard]},
+  {path: 'add-worker', component: AddWorkerComponent},
   {path: 'leave-requests', component: LeaveRequestsComponent, canActivate: [AuthGuard]},
   {path: 'leaves', component: LeavesComponent, canActivate: [AuthGuard]},
   {path: 'add-request', component: AddRequestComponent, canActivate: [AuthGuard]},
@@ -30,7 +29,8 @@ const routes: Routes = [
   {path: 'add-role', component: AddRoleComponent, canActivate: [AuthGuard]},
   {path: 'help', component: HelpComponent, canActivate: [AuthGuard]},
   {path: 'report', component: ReportComponent, canActivate: [AuthGuard]},
-  {path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]}
+  {path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]},
+  {path: '**', component: PageNotFound },
 ];
 
 @NgModule({

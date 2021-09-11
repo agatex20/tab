@@ -27,6 +27,7 @@ import { LeavesTypesComponent } from './modules/leaves-types/leaves-types.compon
 import { AddLeavesTypeComponent } from './modules/add-leaves-type/add-leaves-type.component';
 import { AddRoleComponent } from './modules/add-role/add-role.component';
 import { ChangePasswordComponent } from './modules/change-password/change-password.component';
+import { PageNotFound } from "./utils/components/PageNotFound/page-not-found.component";
 
 
 
@@ -49,6 +50,7 @@ import { ChangePasswordComponent } from './modules/change-password/change-passwo
     AddLeavesTypeComponent,
     AddRoleComponent,
     ChangePasswordComponent,
+    PageNotFound
   ],
   imports: [
     BrowserModule,

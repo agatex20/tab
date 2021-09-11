@@ -23,7 +23,7 @@ returnUrl: string;
     private alertService: AlertService
   ) {
     if (this.authenticationService.currentUserValue) {
-      this.router.navigate(['main']);
+      this.router.navigate(['add-worker']);
     }
   }
 

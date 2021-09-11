@@ -12,7 +12,10 @@ export class AuthenticationService {
   private currentUserSubject: BehaviorSubject<User | null>;
   public currentUser: Observable<User | null>;
 
-  public IsLoggedIn: boolean = false;
+  private _isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public get isLoggedIn(): Observable<boolean> {
+    return this._isLoggedIn.asObservable();
+  }
 
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User | null>(JSON.parse(localStorage.getItem('currentUser') || "null"));
@@ -30,7 +33,7 @@ export class AuthenticationService {
     })
       .pipe(map(user => {
         localStorage.setItem('currentUser', JSON.stringify(user));
-        this.IsLoggedIn = true;
+        this._isLoggedIn.next(true);
         this.currentUserSubject.next(user);
         return user;
       }));
@@ -38,7 +41,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('currentUser');
-    this.IsLoggedIn = false;
+    this._isLoggedIn.next(false);
     this.currentUserSubject.next(null);
   }
 }
