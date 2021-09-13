@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<User[]>(`https://workmanagementsystemtab.azurewebsites.net/index.html/users`);
+    return this.http.get<User[]>(`http://localhost:25889/Users`);
   }
 
   register(user: User) {

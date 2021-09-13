@@ -18,6 +18,10 @@ export class AbsenceService {
     return this.http.post(`https://workmanagementsystemtab.azurewebsites.net/index.html/addAbsence`, absence);
   }
 
+  getAbsence(userId: string) {
+    return this.http.get<Absence[]>(`http://localhost:25889/Absences/worker/${userId}`);
+  }
+
   delete(id: number) {
     return this.http.delete(`https://workmanagementsystemtab.azurewebsites.net/index.html/absences/${id}`);
   }

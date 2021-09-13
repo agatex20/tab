@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
+import { AbsenceType } from 'src/app/models/absenceType/absence-type.model';
+import { AbsenceTypeService } from 'src/app/models/absenceType/absence-type.service';
+import { User } from 'src/app/models/user/user.model';
 
 @Component({
   selector: 'app-leaves-types',
@@ -6,22 +10,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./leaves-types.component.css']
 })
 export class LeavesTypesComponent implements OnInit {
-
   title: string = 'Typy urlopów:';
-  data: Array<any>;constructor(){
-    this.data = [
-        { type: 'Urlop1', value1: Boolean},
-        { type: 'Urlop2', value1: Boolean},
-        { type: 'Urlop3', value1: Boolean},
-        { type: 'Urlop4', value1: Boolean}
-    ];
-}
-  ngOnInit(): void {
-  }
+  absenceTypes: AbsenceType[];
+  currentUser: User;
 
+  ngOnInit(): void { }
+
+  constructor(
+    private absenceTypeService: AbsenceTypeService
+  ) {
+    this.loadAbsenceTypes();
+   }
+
+  loadAbsenceTypes() {
+    this.absenceTypeService.getAll()
+      .pipe(first())
+      .subscribe(absenceTypes => this.absenceTypes = absenceTypes);
+  }
+  
   onDelete():void{
 
   }
+
   Accept(){
     
   }

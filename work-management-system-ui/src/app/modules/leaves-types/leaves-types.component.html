@@ -11,12 +11,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let people of data">
-                <td>{{people.type}}</td>
-                <td ><input  type="checkbox" ng-model="people.value1"></td>
+            <tr *ngFor="let a of absenceTypes">
+                <td>{{a.name}}</td>
+                <td ><input  type="checkbox" ng-model="a.ifShorted"></td>
                 <td style="width: 20%;"> <button (click)="onDelete()" class="btn btn-block" style="margin-top: 20px;">Usuń</button></td>
-                
-               
             </tr>
         </tbody>
     </table>
