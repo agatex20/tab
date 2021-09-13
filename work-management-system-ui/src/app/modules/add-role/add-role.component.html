@@ -5,15 +5,12 @@
             <label style="margin-left: 5px;"  for="roleName"  >Nazwa roli</label>
             <input type="text" name="roleName" id="roleName" [(ngModel)]="roleName" placeholder="nazwa roli"/>
           </div>
-          <div>
-            <input  type="checkbox" ng-model="ifValue1">
-            <label> Czy 1?</label>
+          <div class="select" style="width: 97%">
+              <select (change)="setAccessLevel($event)" class="form-select" [(ngModel)]="accessLevel">
+                  <option *ngFor="let a of accessLevels">{{a}}</option>
+                  <span class="focus"></span>
+              </select>
           </div>
-          <div>
-            <input  type="checkbox" ng-model="ifValue2">
-            <label> Czy 2?</label>
-          </div>
-        
         <input type="submit" value="Dodaj" class="btn btn-block" style="background-color:goldenrod" >
   
       </form>

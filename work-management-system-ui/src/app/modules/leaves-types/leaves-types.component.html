@@ -13,7 +13,7 @@
         <tbody>
             <tr *ngFor="let a of absenceTypes">
                 <td>{{a.name}}</td>
-                <td ><input  type="checkbox" ng-model="a.ifShorted"></td>
+                <td ><input  type="checkbox" [(ngModel)]="a.ifShorted"></td>
                 <td style="width: 20%;"> <button (click)="onDelete()" class="btn btn-block" style="margin-top: 20px;">Usuń</button></td>
             </tr>
         </tbody>
