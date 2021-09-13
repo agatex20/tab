@@ -21,14 +21,18 @@ export class ReportComponent implements OnInit {
   employees: User[];
   absences: Absence[]; 
   absenceTypes: AbsenceType[];
+  selectedAbsences: Absence[];
+  selectedType: string;
   
   constructor(
     private userService: UserService,
     private absenceService: AbsenceService,
     private absenceTypeService: AbsenceTypeService
   ){
+    this.selectedAbsences = this.absences;
     this.loadEmployees();
     this.loadAbsenceTypes();
+    
 }
   ngOnInit(): void {
   }
@@ -43,6 +47,16 @@ export class ReportComponent implements OnInit {
     this.absenceService.getAbsence(userId)
       .pipe(first())
       .subscribe(absences => this.absences = absences);
+
+    this.selectedAbsences = []; 
+
+    for (let a of this.absences)
+    {
+        if(a.startDate >=this.startDate && a.endDate <= this.endDate)
+      {
+        this.selectedAbsences.push(a);
+      }
+    } 
   }
 
   loadAbsenceTypes() {
