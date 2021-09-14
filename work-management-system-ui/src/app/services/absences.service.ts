@@ -5,13 +5,13 @@ import { UrlConsts } from '../constants';
 import { Absence } from '../dto/absence';
 import { AbsenceDTO } from '../dto/absenceDTO';
 import { WorktimeDTO } from '../dto/worktimeDTO';
-import { AuthService } from './auth.service';
+import { AuthRequestService } from './auth-request.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AbsencesService {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthRequestService) {}
 
   eg: AbsenceDTO = {
     absenceTypeId: '5fb0a622-8058-440c-a3c6-385544dafae0',
