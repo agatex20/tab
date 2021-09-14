@@ -69,7 +69,6 @@ export class ReportComponent implements OnInit {
 
   selectChangeHandler(event: any) {
     this.selectedUserId = event.target.value;
-    //this.loadDaysCount(event.target.value);
   }
 
   getTypeName(id: string) {
