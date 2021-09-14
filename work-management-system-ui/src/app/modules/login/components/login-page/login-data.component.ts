@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { AccessLevelEnum } from 'src/app/dto/accessLevelEnum';
 
-import { AbsencesService } from 'src/app/services/absences.service';
-import { AuthService } from 'src/app/services/auth.service';
-import { RolesService } from 'src/app/services/roles.service';
-import { UsersService } from 'src/app/services/user.service';
 import { WorktimesService } from 'src/app/services/worktimes.service';
 
 @Component({
@@ -20,18 +15,7 @@ export class LoginDataComponent implements OnInit {
 
   constructor(private router: Router, private abs: WorktimesService) {}
 
-  ngOnInit(): void {
-    var time1 = new Date();
-    var time2 = new Date();
-    time1.setHours(time2.getHours() + 19);
-    time2.setHours(time2.getHours() + 25);
-    console.log(time1);
-    console.log(time2);
-    this.abs
-      .getAllFromUser('DE606048-0FB6-4D67-65D4-08D946D6A2CE')
-
-      .subscribe({ next: (x) => console.log(x) });
-  }
+  ngOnInit(): void {}
   onSubmit() {
     if (!this.login) {
       alert('Wpisz login');
