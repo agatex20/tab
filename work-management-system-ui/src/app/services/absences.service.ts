@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { UrlConsts } from '../constants';
+import { Absence } from '../dto/absence';
 import { AbsenceDTO } from '../dto/absenceDTO';
 import { AuthService } from './auth.service';
 
@@ -24,5 +25,9 @@ export class AbsencesService {
 
   addAbsence(absence: AbsenceDTO): Observable<AbsenceDTO> {
     return this.authService.post<AbsenceDTO>('Absences', absence);
+  }
+
+  getWorkersAbsences(workerId: string): Observable<Absence> {
+    return this.authService.get<Absence>(`Absences/worker/${workerId}`);
   }
 }

@@ -9,6 +9,7 @@ import { UrlConsts } from '../constants';
 export class AuthService {
   private auth_token: string =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN0cmluZyIsImp0aSI6IjM0N2YxYjRlLTQwOTQtNDQyZC1iMTQ1LTU4MDU4YjBjZmMxMiIsImFjY2Vzc0xldmVsIjoiTWFuYWdlciIsIm5iZiI6MTYzMTYzODkzOSwiZXhwIjoxNjMxNjQwNzM5LCJpYXQiOjE2MzE2Mzg5Mzl9.FX2JLho-888DFBDthGD1DPV0TLhGHOhbVrwMtZSkOhQ';
+
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
     Authorization: `Bearer ${this.auth_token}`,

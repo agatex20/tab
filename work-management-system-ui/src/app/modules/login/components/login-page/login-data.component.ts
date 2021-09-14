@@ -15,7 +15,9 @@ export class LoginDataComponent implements OnInit {
   constructor(private router: Router, private abs: AbsencesService) {}
 
   ngOnInit(): void {
-    this.abs.getAllAbsences().subscribe({ next: (x) => console.log(x) });
+    this.abs
+      .getWorkersAbsences('260E4F02-24C3-4660-23CD-08D93B33A952')
+      .subscribe({ next: (x) => console.log(x) });
   }
   onSubmit() {
     if (!this.login) {
