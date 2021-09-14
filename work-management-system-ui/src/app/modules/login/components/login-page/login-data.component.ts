@@ -16,7 +16,9 @@ export class LoginDataComponent implements OnInit {
 
   ngOnInit(): void {
     this.abs
-      .getWorkersAbsences('260E4F02-24C3-4660-23CD-08D93B33A952')
+      .findReplacement('1bdc6ebd-3965-496b-a4c5-2decfd4e1b58')
+      // .getFromWorkerConfirmed('260E4F02-24C3-4660-23CD-08D93B33A952')
+      //   .getWorkersAbsences('260E4F02-24C3-4660-23CD-08D93B33A952')
       .subscribe({ next: (x) => console.log(x) });
   }
   onSubmit() {
