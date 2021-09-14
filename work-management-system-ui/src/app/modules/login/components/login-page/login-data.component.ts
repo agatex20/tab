@@ -6,6 +6,7 @@ import { AbsencesService } from 'src/app/services/absences.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { RolesService } from 'src/app/services/roles.service';
 import { UsersService } from 'src/app/services/user.service';
+import { WorktimesService } from 'src/app/services/worktimes.service';
 
 @Component({
   selector: 'app-login-data',
@@ -17,15 +18,19 @@ export class LoginDataComponent implements OnInit {
   password: string = '';
   title: string = 'Zaloguj';
 
-  constructor(private router: Router, private abs: UsersService) {}
+  constructor(private router: Router, private abs: WorktimesService) {}
 
   ngOnInit(): void {
+    var time1 = new Date();
+    var time2 = new Date();
+    time1.setHours(time2.getHours() + 19);
+    time2.setHours(time2.getHours() + 25);
+    console.log(time1);
+    console.log(time2);
     this.abs
-      .delete('287c7f8f-a0ee-46a5-700d-08d977b913d4')
+      .getAllFromUser('DE606048-0FB6-4D67-65D4-08D946D6A2CE')
+
       .subscribe({ next: (x) => console.log(x) });
-    // .getFromWorkerConfirmed('260E4F02-24C3-4660-23CD-08D93B33A952')
-    //   .getWorkersAbsences('260E4F02-24C3-4660-23CD-08D93B33A952')
-    // .subscribe({ next: (x) => console.log(x) });
   }
   onSubmit() {
     if (!this.login) {

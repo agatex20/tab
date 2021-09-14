@@ -21,12 +21,12 @@ export class AbsencesService {
     userId: '160E4F02-24C3-4660-23CD-08D93B33A952',
   };
 
-  getAll(): Observable<AbsenceDTO[]> {
-    return this.authService.get<AbsenceDTO[]>('Absences');
+  getAll(): Observable<AbsenceUpdateDTO[]> {
+    return this.authService.get<AbsenceUpdateDTO[]>('Absences');
   }
 
-  add(absence: AbsenceDTO): Observable<AbsenceDTO> {
-    return this.authService.post<AbsenceDTO>('Absences', absence);
+  add(absence: AbsenceDTO): Observable<AbsenceUpdateDTO> {
+    return this.authService.post<AbsenceUpdateDTO>('Absences', absence);
   }
 
   update(absence: AbsenceUpdateDTO): Observable<AbsenceUpdateDTO> {
