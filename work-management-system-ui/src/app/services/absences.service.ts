@@ -4,6 +4,7 @@ import { Observable, of } from 'rxjs';
 import { UrlConsts } from '../constants';
 import { Absence } from '../dto/absence';
 import { AbsenceDTO } from '../dto/absenceDTO';
+import { AbsenceUpdateDTO } from '../dto/absenceUpdateDTO';
 import { WorktimeDTO } from '../dto/worktimeDTO';
 import { AuthRequestService } from './auth-request.service';
 
@@ -26,6 +27,10 @@ export class AbsencesService {
 
   add(absence: AbsenceDTO): Observable<AbsenceDTO> {
     return this.authService.post<AbsenceDTO>('Absences', absence);
+  }
+
+  update(absence: AbsenceUpdateDTO): Observable<AbsenceUpdateDTO> {
+    return this.authService.put<AbsenceUpdateDTO>('Absences', absence);
   }
 
   getFromWorker(workerId: string): Observable<Absence> {
