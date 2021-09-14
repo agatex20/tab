@@ -14,7 +14,9 @@ export class LoginDataComponent implements OnInit {
 
   constructor(private router: Router, private abs: AbsencesService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.abs.getAllAbsences().subscribe({ next: (x) => console.log(x) });
+  }
   onSubmit() {
     if (!this.login) {
       alert('Wpisz login');
