@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { first, take } from 'rxjs/operators';
 import { Absence } from 'src/app/models/absence/absence.model';
 import { AbsenceService } from 'src/app/models/absence/absence.service';
 import { AbsenceType } from 'src/app/models/absenceType/absence-type.model';
@@ -15,7 +15,7 @@ import { UserService } from 'src/app/models/user/user.service';
 })
 export class ReportComponent implements OnInit {
   title: string = 'Raport';
-  leftDays: string = '0'
+  leftDays: number;
   startDate: string;
   endDate: string;
   employees: User[];
@@ -23,6 +23,7 @@ export class ReportComponent implements OnInit {
   absenceTypes: AbsenceType[];
   selectedAbsences: Absence[];
   selectedType: string;
+  selectedUserId: string;
   
   constructor(
     private userService: UserService,
@@ -31,9 +32,9 @@ export class ReportComponent implements OnInit {
   ){
     this.selectedAbsences = this.absences;
     this.loadEmployees();
-    this.loadAbsenceTypes();
-    
-}
+    this.loadAbsenceTypes();  
+  }
+
   ngOnInit(): void {
   }
 
@@ -46,17 +47,18 @@ export class ReportComponent implements OnInit {
   loadAbsences(userId: string) {
     this.absenceService.getAbsence(userId)
       .pipe(first())
-      .subscribe(absences => this.absences = absences);
+      .subscribe(absences => {
+        this.absences = absences;
+        this.selectedAbsences = []; 
 
-    this.selectedAbsences = []; 
-
-    for (let a of this.absences)
-    {
-        if(a.startDate >=this.startDate && a.endDate <= this.endDate)
-      {
-        this.selectedAbsences.push(a);
-      }
-    } 
+        for (let a of this.absences)
+        {
+          if((!this.startDate || a.startDate >=this.startDate) && (!this.endDate || a.endDate <= this.endDate))
+          {
+            this.selectedAbsences.push(a);
+          }
+        } 
+      });
   }
 
   loadAbsenceTypes() {
@@ -66,8 +68,8 @@ export class ReportComponent implements OnInit {
   }
 
   selectChangeHandler(event: any) {
-    console.log(event.target.value);
-    this.loadAbsences(event.target.value);
+    this.selectedUserId = event.target.value;
+    //this.loadDaysCount(event.target.value);
   }
 
   getTypeName(id: string) {
@@ -75,15 +77,40 @@ export class ReportComponent implements OnInit {
     if (!type) {
       return ''
     }
-    return type.name
+    return this.translate(type.name);
   }
 
   getDate(date: string) {
     return date.substring(0,10);
   }
 
-  onSubmit(){
-
+  loadDaysCount(id: string) {
+    const user = this.employees.find((user) => user.userId === id)
+    if (user) {
+      this.leftDays = user.vacationDaysCount;
+    }  
   }
 
+  onSubmit(){
+    this.loadAbsences(this.selectedUserId);
+    this.loadDaysCount(this.selectedUserId);
+  }
+
+  translate(word: string) {
+    if(word==='maternity')
+      return 'macierzyński';
+    if(word==='vacation')
+      return 'wakacje';
+    if(word==='on demand')
+      return 'na żądanie';;
+    return word;
+  }
+
+  translateBool(word: boolean) {
+    if(word==true)
+      return 'tak';
+    if(word==false)
+      return 'nie';
+    return '';
+  }
 }

@@ -5,6 +5,7 @@ export class User {
     firstName: string;
     lastName: string;
     token: string;
+    vacationDaysCount: number;
 
     constructor(username, password, firstName, lastName) {
         this.username = username;

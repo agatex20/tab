@@ -74,7 +74,7 @@ export class LeaveRequestsComponent implements OnInit {
     if (!type) {
       return ''
     }
-    return type.name
+    return this.translate(type.name);
   }
 
   getUsername(id: string) {
@@ -87,5 +87,15 @@ export class LeaveRequestsComponent implements OnInit {
 
   getDate(date: string) {
     return date.substring(0,10);
+  }
+
+  translate(word: string) {
+    if(word==='maternity')
+      return 'macierzyński';
+    if(word==='vacation')
+      return 'wakacje';
+    if(word==='on demand')
+      return 'na żądanie';;
+    return word;
   }
 }

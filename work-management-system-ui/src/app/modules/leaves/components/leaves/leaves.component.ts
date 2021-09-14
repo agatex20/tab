@@ -64,4 +64,22 @@ export class LeavesComponent implements OnInit {
   getDate(date: string) {
     return date.substring(0,10);
   }
+
+  translate(word: string) {
+    if(word==='maternity')
+      return 'macierzyński';
+    if(word==='vacation')
+      return 'wakacje';
+    if(word==='on demand')
+      return 'na żądanie';;
+    return word;
+  }
+
+  translateBool(word: boolean) {
+    if(word==true)
+      return 'tak';
+    if(word==false)
+      return 'nie';
+    return '';
+  }
 }

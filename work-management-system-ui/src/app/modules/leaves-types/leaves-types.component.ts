@@ -45,4 +45,6 @@ export class LeavesTypesComponent implements OnInit {
     }
     setTimeout(() => location.reload(), 1000)
   }
+
+  
 }

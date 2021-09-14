@@ -30,6 +30,7 @@
             <th >Typ</th>
             <th >Data początkowa</th>
             <th >Data końcowa</th>
+            <th>Czy zatwierdzona</th>
         </tr>
     </thead>
     <tbody>
@@ -37,6 +38,7 @@
             <td>{{getTypeName(a.absenceTypeId)}}</td>
             <td>{{getDate(a.startDate)}}</td>
             <td>{{getDate(a.endDate)}}</td>
+            <td>{{translateBool(a.confirmed)}}</td>
         </tr>
     </tbody>
 </table>
