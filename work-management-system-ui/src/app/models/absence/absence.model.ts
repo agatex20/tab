@@ -1,4 +1,6 @@
 export class Absence {
+    absenceId: string;
+    confirmed: boolean;
     startDate: string;
     endDate: string;
     absenceTypeId: string;

@@ -9,16 +9,15 @@
                 <label style="margin-left: 5px;"  for="endDate"  >Koniec urlopu</label>
                 <input type="date" name="endDate" id="endDate" [(ngModel)]="endDate" placeholder="data"/>
             </div>
-            <div class="select">
-                <select id="typeCombo" style="width: 100%; margin-left: 5px; font-size: large;" class="form-control" [(ngModel)]="selectedType">
-                    <option *ngFor="let n of leaveTypes">
-                        {{ n.value }}
+            <div class="select" style="width:100%;">
+                <select (change)="selectChangeHandler($event)" style="font-size: x-large;"  class="form-select" [(ngModel)]="selectedType">
+                    <option *ngFor="let a of absenceTypes" [value]="a.absenceTypeId">
+                        {{ a.name }}
                     </option>
                     <span class="focus"></span>
                 </select>
             </div>
-        <input [disabled]="loading" type="submit" value="Wnioskuj" class="btn btn-block">
-  
+        <input type="submit" value="Wnioskuj" class="btn btn-block">
     </form>
     
     

@@ -1,7 +1,10 @@
+import { convertUpdateArguments } from '@angular/compiler/src/compiler_util/expression_converter';
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
+import { AlertService } from 'src/app/alerts/services/alert.service';
 import { Role } from 'src/app/models/roles/role.model';
 import { RoleService } from 'src/app/models/roles/role.service';
+import { RolesService } from '../../services/roles.service';
 
 @Component({
   selector: 'app-roles',
@@ -9,12 +12,13 @@ import { RoleService } from 'src/app/models/roles/role.service';
   styleUrls: ['./roles.component.css']
 })
 export class RolesComponent implements OnInit {
-  accessLevels: Array<number> = [0, 1, 2, 3];
+  accessLevels: Array<number> = [0, 1, 2];
   title: string = 'Role:';
   roles: Role[];
 
   constructor(
-    private roleService: RoleService
+    private roleService: RoleService,
+    private alertService: AlertService
   ){
     this.loadRoles();
   }
@@ -28,10 +32,24 @@ export class RolesComponent implements OnInit {
       .subscribe(roles => this.roles = roles);
   }
 
-  onDelete():void{
-
+  onDelete(roleId: string) {
+    this.roleService.delete(roleId)
+      .pipe(first())
+      .subscribe(data => {
+        this.alertService.success("Usunięto");
+        location.reload();
+      },
+      error => {
+        this.alertService.error(error);
+      })
   }
+
   Accept(){
-    
+    for (let i=0; i < this.roles.length; i++) {
+      this.roleService.update(this.roles[i])
+        .pipe(first())
+        .subscribe(data => console.log(data))
+    }
+    setTimeout(() => location.reload(), 1000)
   }
 }

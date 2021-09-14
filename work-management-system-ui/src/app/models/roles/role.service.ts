@@ -19,7 +19,11 @@ export class RoleService {
   }
 
   update(role: Role) {
-    return this.http.put(`http://localhost:25889/Roles`, role);
+    let body = JSON.stringify(role);
+    let index = body.indexOf("\"accessLevel\":")
+    body = body.substring(0, index+14) + role.accessLevel + "}";
+    let json = JSON.parse(body);
+    return this.http.put<Role>(`http://localhost:25889/Roles`, json);
   }
 
   add(name: string, accessLevel: number) {

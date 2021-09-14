@@ -50,7 +50,6 @@ export class LeavesComponent implements OnInit {
   }
 
   selectChangeHandler(event: any) {
-    console.log(event.target.value);
     this.loadAbsences(event.target.value);
   }
 

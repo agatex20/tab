@@ -4,6 +4,9 @@ import { first } from 'rxjs/operators';
 
 import { AlertService } from 'src/app/alerts/services/alert.service';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
+import { AbsenceService } from 'src/app/models/absence/absence.service';
+import { AbsenceType } from 'src/app/models/absenceType/absence-type.model';
+import { AbsenceTypeService } from 'src/app/models/absenceType/absence-type.service';
 import { LeaveRequest } from 'src/app/models/leave-requests/leave-request.model';
 import { LeaveRequestService } from 'src/app/models/leave-requests/leave-request.service';
 import { User } from 'src/app/models/user/user.model';
@@ -14,62 +17,55 @@ import { User } from 'src/app/models/user/user.model';
   styleUrls: ['./add-request.component.css']
 })
 export class AddRequestComponent implements OnInit {   
-  leaveTypes = [
-    { value: "typ 1"},
-    { value: "typ 2"}
-  ];
+  absenceTypes: AbsenceType[];
   selectedType: string;
   startDate: string;
   endDate: string;
   title: string = 'Wnioskuj o urlop';
-  loading = false;
   currentUser: User;
 
   constructor(
     private authenticationService: AuthenticationService,
-    private leaveRequestService: LeaveRequestService,
+    private absenceTypeService: AbsenceTypeService,
+    private absenceService: AbsenceService,
     private alertService: AlertService
   ) {
-    this.currentUser = this.authenticationService.currentUserValue;
+    //this.currentUser = this.authenticationService.currentUserValue;
    }
 
-  ngOnInit(): void {}
+  ngOnInit() {
+    this.loadAbsenceTypes();
+  }
 
   onSubmit() {
-    if(!this.startDate)
+    if(!this.startDate || !this.endDate || !this.selectedType)
     {
-      alert('Wpisz datę rozpoczęcia');
+      this.alertService.error("Uzupełnij wszystkie dane");
       return;
     }
-
-    if(!this.endDate)
-    {
-      alert('Wpisz datę zakończenia');
-      return;
-    }
-    let typeCombo = document.getElementById("typeCombo") as HTMLSelectElement;
-    this.selectedType = typeCombo.selectedOptions[0].value;
-    if(!this.selectedType)
-    {
-      alert('Wybierz typ');
-      return;
-    }
-
-    let newRequest: LeaveRequest = new LeaveRequest(this.startDate, this.endDate, this.selectedType, this.currentUser.username);
-
-    this.alertService.clear();
     
-    this.loading = true;
-    this.leaveRequestService.addRequest(newRequest)
+    this.absenceService.addAbsence(this.startDate, this.endDate, '160e4f02-24c3-4660-23cd-08d93b33a952', this.selectedType)
       .pipe(first())
-      .subscribe(
-        data => {
-          this.alertService.success('Zgłoszono prośbę o urlop', true);
-          this.loading = false;
-        },
-        error => {
-          this.alertService.error(error);
-          this.loading = false;
-       });
+      .subscribe(data => this.alertService.success("Dodano nową prośbę"));
+  }
+
+  loadAbsenceTypes() {
+    this.absenceTypeService.getAll()
+      .pipe(first())
+      .subscribe(absenceTypes => this.absenceTypes = absenceTypes);
+  }
+
+  getTypeName(id: string) {
+    const type =  this.absenceTypes.find((type) => type.absenceTypeId === id)
+    if (!type) {
+      return ''
+    }
+    return type.name
+  }
+
+  selectChangeHandler(event: any) {
+    this.selectedType = event.target.value;
   }
 }
+
+

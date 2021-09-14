@@ -17,7 +17,7 @@ title: string = 'Dodaj typ urlopu';
 
   constructor(
     private absenceTypeService: AbsenceTypeService,
-    private alertService: AlertService
+    private alertService: AlertService,
     ) { }
 
   ngOnInit(): void { }
