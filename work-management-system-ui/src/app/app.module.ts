@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //////////////////////////
 import { fakeBackendProvider} from './fakebackend/fake-backend.interceptor';
@@ -9,7 +9,6 @@ import { fakeBackendProvider} from './fakebackend/fake-backend.interceptor';
 
 import { AppComponent } from './app.component';
 import { ButtonComponent } from './utils/components/button/button.component';
-import { LoginDataComponent } from './modules/login/components/login-page/login-data.component';
 import { AppRoutingModule } from './app-routing-module';
 import { NavigationBarComponent } from './modules/navbar/components/navigation-bar/navigation-bar.component';
 import { AddWorkerComponent } from './modules/add-worker/components/add-worker/add-worker.component';
@@ -28,6 +27,7 @@ import { AddLeavesTypeComponent } from './modules/add-leaves-type/add-leaves-typ
 import { AddRoleComponent } from './modules/add-role/add-role.component';
 import { ChangePasswordComponent } from './modules/change-password/change-password.component';
 import { PageNotFound } from "./utils/components/PageNotFound/page-not-found.component";
+import { LoginComponent } from "./modules/login/components/login-page/login.component";
 
 
 
@@ -35,7 +35,7 @@ import { PageNotFound } from "./utils/components/PageNotFound/page-not-found.com
   declarations: [
     AppComponent,
     ButtonComponent,
-    LoginDataComponent,
+    LoginComponent,
     NavigationBarComponent,
     AddWorkerComponent,
     HelpComponent,
@@ -54,17 +54,16 @@ import { PageNotFound } from "./utils/components/PageNotFound/page-not-found.com
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    ReactiveFormsModule,
     FormsModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    ///////////////////
-    fakeBackendProvider
-    ///////////////
+
   ],
   bootstrap: [AppComponent]
 })

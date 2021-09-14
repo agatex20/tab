@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LoginDataComponent } from './modules/login/components/login-page/login-data.component';
+import { LoginComponent } from './modules/login/components/login-page/login.component';
 import { AddWorkerComponent } from './modules/add-worker/components/add-worker/add-worker.component';
 import { AuthGuard } from "./authentication/auth.guard";
 import { LeaveRequestsComponent } from './modules/leave-requests/components/leave-requests/leave-requests.component';
@@ -17,8 +17,8 @@ import { AppComponent } from "./app.component";
 import { PageNotFound } from "./utils/components/PageNotFound/page-not-found.component";
 
 const routes: Routes = [
-  {path: '', component: AppComponent},
-  {path: 'login', component: LoginDataComponent},
+  {path: '', redirectTo: 'login', pathMatch:'full'},
+  {path: 'login', component: LoginComponent},
   {path: 'add-worker', component: AddWorkerComponent},
   {path: 'leave-requests', component: LeaveRequestsComponent, canActivate: [AuthGuard]},
   {path: 'leaves', component: LeavesComponent, canActivate: [AuthGuard]},
