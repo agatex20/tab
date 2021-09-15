@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './modules/login/components/login-page/login.component';
-import { AddWorkerComponent } from './modules/add-worker/components/add-worker/add-worker.component';
+import { AddWorkerComponent } from 'src/app/modules/add-worker/components/add-worker/add-worker.component';
 import { LoggedGuard } from './authentication/logged.guard';
 import { LeaveRequestsComponent } from './modules/leave-requests/components/leave-requests/leave-requests.component';
 import { LeavesComponent } from './modules/leaves/components/leaves/leaves.component';
