@@ -6,6 +6,7 @@ import { AbsencesService } from 'src/app/services/absences.service';
 import { AbsenceTypeService } from 'src/app/services/absence-type.service';
 import { UsersService } from 'src/app/services/user.service';
 import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-leaves',
@@ -17,18 +18,20 @@ export class LeavesComponent implements OnInit {
   title: string = 'Urlopy:';
   selectedType: string;
   absences: Absence[];
-  absenceTypes: AbsenceTypeUpdateDTO[];//AbsenceType[];
+  absenceTypes: AbsenceTypeUpdateDTO[];
   
   constructor(
     private userService: UsersService,
     private absenceTypeService: AbsenceTypeService,
     private absencesService: AbsencesService,
+    private authService: AuthService
   ){
     this.loadEmployees();
     this.loadAbsenceTypes();
 }
   
-  ngOnInit(): void {
+  ngOnInit() {
+    this.loadAbsences(this.authService.loggedUser.userId);
   }
 
   loadEmployees() {
@@ -47,10 +50,6 @@ export class LeavesComponent implements OnInit {
     this.absenceTypeService.getAll()
       .pipe(first())
       .subscribe(absenceTypes => this.absenceTypes = absenceTypes);
-  }
-
-  selectChangeHandler(event: any) {
-    this.loadAbsences(event.target.value);
   }
 
   getTypeName(id: string) {

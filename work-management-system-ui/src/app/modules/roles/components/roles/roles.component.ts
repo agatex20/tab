@@ -40,7 +40,6 @@ export class RolesComponent implements OnInit {
       .pipe(first())
       .subscribe(data => {
         this.alertService.success("Usunięto");
-        location.reload();
       },
       error => {
         this.alertService.error(error);
@@ -53,6 +52,5 @@ export class RolesComponent implements OnInit {
         .pipe(first())
         .subscribe(data => console.log(data))
     }
-    setTimeout(() => location.reload(), 1000)
   }
 }

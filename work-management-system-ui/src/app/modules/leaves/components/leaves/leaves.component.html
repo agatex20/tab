@@ -1,13 +1,4 @@
 <div class="container">
-
-<div class="select" style="width:200px;">
-    <select (change)="selectChangeHandler($event)" id=standard-select style="margin-bottom: 4%; margin-left: 5px; " class="form-select" [(ngModel)]="selectedType">
-        <option *ngFor="let e of employees" [value]="e.userId">
-            {{ e.firstName + " " + e.lastName }}
-        </option>
-        <span class="focus"></span>
-    </select>
-</div>
 <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
 <table class="table"> 
     <thead>

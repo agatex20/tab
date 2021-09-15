@@ -40,7 +40,7 @@ export class LeaveRequestsComponent implements OnInit {
       .pipe(first())
       .subscribe(data => {
         this.alertService.success("Zatwierdzono");
-        location.reload();});
+        });
   }
 
   onReject(absenceId: string) {
@@ -48,7 +48,6 @@ export class LeaveRequestsComponent implements OnInit {
       .pipe(first())
       .subscribe(data => {
         this.alertService.success("Usunięto");
-        location.reload();
       });
   }
   

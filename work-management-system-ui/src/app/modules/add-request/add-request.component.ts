@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { AlertService } from 'src/app/alerts/services/alert.service';
-import { AuthenticationService } from 'src/app/authentication/authentication.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { AbsencesService } from 'src/app/services/absences.service';
 import { AbsenceTypeUpdateDTO } from 'src/app/dto/absenceTypeUpdateDTO';
 import { AbsenceTypeService } from 'src/app/services/absence-type.service';
@@ -19,16 +19,13 @@ export class AddRequestComponent implements OnInit {
   startDate: string;
   endDate: string;
   title: string = 'Wnioskuj o urlop';
-  currentUser: UserUpdateDTO;
 
   constructor(
-    private authenticationService: AuthenticationService,
+    private authService: AuthService,
     private absenceTypeService: AbsenceTypeService,
     private absenceService: AbsencesService,
     private alertService: AlertService
-  ) {
-    //this.currentUser = this.authenticationService.currentUserValue;
-   }
+  ) { }
 
   ngOnInit() {
     this.loadAbsenceTypes();
@@ -41,7 +38,7 @@ export class AddRequestComponent implements OnInit {
       return;
     }
     
-    this.absenceService.add(this.startDate, this.endDate, '160e4f02-24c3-4660-23cd-08d93b33a952', this.selectedType)
+    this.absenceService.add(this.startDate, this.endDate, this.authService.loggedUser.userId, this.selectedType)
       .pipe(first())
       .subscribe(data => this.alertService.success("Dodano nową prośbę"));
   }

@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     private rolesService: RolesService
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.loggedUser) {
+    if (this.authenticationService.isLoggedIn) {
       this.router.navigate(['/']);
     }
   }

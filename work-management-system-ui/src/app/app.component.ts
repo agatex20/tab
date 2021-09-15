@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
-import { AuthenticationService } from './authentication/authentication.service';
-import { User } from './models/user/user.model';
-import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +12,7 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   public isNavbarVisible: boolean = false;
 
-  constructor(public _service: AuthenticationService, private router: Router) {}
+  constructor(public _service: AuthService, private router: Router) {}
 
   public ngOnInit(): void {
     this._service.isLoggedIn.subscribe((isLoggedIn) => {
