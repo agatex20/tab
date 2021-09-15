@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
+import { AuthService } from 'src/app/services/auth.service';
 import { UsersService } from 'src/app/services/user.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ChangePasswordComponent implements OnInit {
   newPassword2: string;
   oldPassword: string;
   title: string = 'Zmień hasło';
-  constructor(private usersService: UsersService) { }
+  constructor(private usersService: UsersService, private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -34,10 +35,11 @@ export class ChangePasswordComponent implements OnInit {
       return;
     }
     var updatedUser: UserUpdateDTO ={
+      userId: this.authService.loggedUser.userId,
       password: this.newPassword,
     }
 
-    this.usersService.update(updatedUser);
+    this.usersService.update(updatedUser).subscribe();
     alert("Hasło zmienione.")
     
   }
