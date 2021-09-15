@@ -7,7 +7,7 @@ import {Observable, of} from "rxjs";
 export class NavigationBarService {
 
   public getTitle(): Observable<string>{
-    return of("siema");  //trzeba tak zrobic, bo cos sie sadzi, ze nie da sie od razu do observable lel
+    return of("navigation bar");  //trzeba tak zrobic, bo cos sie sadzi, ze nie da sie od razu do observable lel
   }
   constructor() { }
 

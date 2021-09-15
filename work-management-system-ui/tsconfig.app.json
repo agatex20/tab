@@ -3,7 +3,12 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": {
+      "@alerts": [ "src/app/alerts" ],
+      "@user": [ "src/app/user" ],
+      "@authentication": [ "src/app/authentication"]
+    }
   },
   "files": [
     "src/main.ts",

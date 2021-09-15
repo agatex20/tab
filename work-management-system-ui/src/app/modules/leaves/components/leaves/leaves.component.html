@@ -1,1 +1,30 @@
-<p>leaves works!</p>
+<div class="container">
+
+<div class="select" style="width:200px;">
+    <select id=standard-select style="margin-bottom: 4%; margin-left: 5px; " class="form-select" [(ngModel)]="selectedType">
+        <option *ngFor="let e of employees">
+            {{ e.firstName + " " + e.lastName }}
+        </option>
+        <span class="focus"></span>
+    </select>
+</div>
+<h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
+<table class="table"> 
+    <thead>
+        <tr>
+            <th>Typ</th>
+            <th>Imię Nazwisko</th>
+            <th >Data początkowa</th>
+            <th >Data końcowa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let a of absences">
+            <td>{{a.type}}</td>
+            <td>lalal</td>
+            <td>{{a.startDate}}</td>
+            <td>{{a.endDate}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>

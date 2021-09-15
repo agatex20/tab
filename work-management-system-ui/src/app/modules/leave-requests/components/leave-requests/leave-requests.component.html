@@ -1,1 +1,34 @@
-<p>leave-requests works!</p>
+<div class="container">
+
+    <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
+    <table class="table"> 
+        <thead>
+            <tr>
+                <th>Typ</th>
+                <th>Imie Nazwisko</th>
+                <th >Data początkowa</th>
+                <th >Data końcowa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let r of requests">
+                <td>{{r.type}}</td>
+                <td>lalal</td>
+                <td>{{r.startDate}}</td>
+                <td>{{r.endDate}}</td>
+                <td style="width: 20%;"> <button  (click)="onSubmit(r)" type="submit" value="Zatwierdź" class="btn btn-block">Zatwierdź</button></td>
+                <td style="width: 20%;"> <button  (click)="onReject(r.id)" type="reject" value="Odrzuć" class="btn btn-block">Odrzuć</button></td>
+                <td>
+                    <div class="select">
+                    <select class="form-select" [(ngModel)]="r.employee">
+                        <option *ngFor="let e of employees">
+                            {{e.firstName + " " + e.lastName}}
+                        </option>
+                        <span class="focus"></span>
+                        </select>
+                    </div>
+                </td>           
+            </tr>
+        </tbody>
+    </table>
+    </div>

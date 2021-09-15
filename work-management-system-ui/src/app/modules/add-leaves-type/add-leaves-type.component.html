@@ -1,0 +1,17 @@
+<div class="container">
+    <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
+      <form class="add-form" (ngSubmit)="onSubmit()">
+        <div class="form-control">
+            <label style="margin-left: 5px;"  for="leaveName"  >Nazwa urlopu</label>
+            <input type="text" name="leaveName" id="leaveName" [(ngModel)]="leaveName" placeholder="nazwa urlopu"/>
+          </div>
+          <div>
+            <input  type="checkbox" ng-model="ifTakesLeave">
+            <label> Czy zabiera dni urlopu?</label>
+          </div>
+        
+        <input type="submit" value="Dodaj" class="btn btn-block" style="background-color:goldenrod" >
+  
+      </form>
+      
+  </div>

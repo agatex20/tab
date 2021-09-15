@@ -1,0 +1,21 @@
+<div class="container">
+    <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
+      <form class="add-form" (ngSubmit)="onSubmit()">
+        <div class="form-control">
+            <label style="margin-left: 5px;"  for="roleName"  >Nazwa roli</label>
+            <input type="text" name="roleName" id="roleName" [(ngModel)]="roleName" placeholder="nazwa roli"/>
+          </div>
+          <div>
+            <input  type="checkbox" ng-model="ifValue1">
+            <label> Czy 1?</label>
+          </div>
+          <div>
+            <input  type="checkbox" ng-model="ifValue2">
+            <label> Czy 2?</label>
+          </div>
+        
+        <input type="submit" value="Dodaj" class="btn btn-block" style="background-color:goldenrod" >
+  
+      </form>
+      
+  </div>

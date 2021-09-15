@@ -1,1 +1,40 @@
-<p>report works!</p>
+<div class="container">
+    <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
+    <form class="add-form" (ngSubmit)="onSubmit()">   
+        <div class="select" style="width:200px;">
+            <select  style="width: 100%; margin-left: 5px; font-size: large;" class="form-select">
+                <option *ngFor="let e of employees">
+                    {{e.username}}
+                </option>
+            <span class="focus"></span>
+            </select>
+        </div>        
+        <div class="form-control">
+            <label style="margin-left: 5px;"  for="startDate"  >Początek urlopu</label>
+            <input type="date" name="startDate" id="startDate" [(ngModel)]="startDate" placeholder="data"/>
+        </div>
+        <div class="form-control">
+            <label style="margin-left: 5px;"  for="endDate"  >Koniec urlopu</label>
+            <input type="date" name="endDate" id="endDate" [(ngModel)]="endDate" placeholder="data"/>
+        </div>
+    <input type="submit" value="Generuj" class="btn btn-block">
+
+</form>
+
+<table class="table"> 
+    <thead>
+        <tr>
+            <th >Typ</th>
+            <th >Data początkowa</th>
+            <th >Data końcowa</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let a of absences">
+            <td>{{a.type}}</td>
+            <td>{{a.startDate}}</td>
+            <td>{{a.endDate}}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
