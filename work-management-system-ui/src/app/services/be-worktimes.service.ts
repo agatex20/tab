@@ -7,7 +7,7 @@ import { AuthRequestService } from './auth-request.service';
 @Injectable({
   providedIn: 'root',
 })
-export class WorktimesService {
+export class BEWorktimesService {
   constructor(private authService: AuthRequestService) {}
 
   getAll(): Observable<WorktimeUpdateDTO[]> {

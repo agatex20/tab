@@ -7,7 +7,7 @@ import { AuthRequestService } from './auth-request.service';
 @Injectable({
   providedIn: 'root',
 })
-export class RolesService {
+export class BERolesService {
   constructor(private authService: AuthRequestService) {}
 
   getAll(): Observable<RoleUpdateDTO[]> {

@@ -9,7 +9,7 @@ import { UserRegistrationDTO } from '../dto/userRegistrationDTO';
 @Injectable({
   providedIn: 'root',
 })
-export class BackEndAuthService {
+export class BEAuthService {
   constructor(private http: HttpClient) {}
 
   register(user: UserRegistrationDTO): Observable<AuthResponse> {

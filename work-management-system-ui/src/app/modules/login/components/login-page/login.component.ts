@@ -7,9 +7,9 @@ import {
   Validators,
 } from '@angular/forms';
 import { Configuration } from '../../../../config';
-import { BackEndAuthService } from 'src/app/services/back-end-auth.service';
+import { BEAuthService } from 'src/app/services/be-auth.service';
 import { AuthResponse } from 'src/app/dto/authResponse';
-import { RolesService } from 'src/app/services/roles.service';
+import { BERolesService } from 'src/app/services/be-roles.service';
 import { RoleUpdateDTO } from 'src/app/dto/roleUpdateDTO';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthService,
-    private loginService: BackEndAuthService,
-    private rolesService: RolesService
+    private loginService: BEAuthService,
+    private rolesService: BERolesService
   ) {
     // redirect to home if already logged in
     if (this.authenticationService.loggedUser) {
