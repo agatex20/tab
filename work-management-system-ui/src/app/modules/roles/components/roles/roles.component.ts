@@ -4,7 +4,10 @@ import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/alerts/services/alert.service';
 import { Role } from 'src/app/models/roles/role.model';
 import { RoleService } from 'src/app/models/roles/role.service';
-import { RolesService } from '../../services/roles.service';
+import { AccessLevelEnum } from 'src/app/dto/accessLevelEnum';
+import { RoleUpdateDTO } from 'src/app/dto/roleUpdateDTO'
+import { RolesService } from 'src/app/services/roles.service';
+//import { RolesService } from '../../services/roles.service';
 
 @Component({
   selector: 'app-roles',
@@ -12,12 +15,12 @@ import { RolesService } from '../../services/roles.service';
   styleUrls: ['./roles.component.css']
 })
 export class RolesComponent implements OnInit {
-  accessLevels: Array<number> = [0, 1, 2];
+  accessLevels: Array<number> = [0, 1, 2, -1];
   title: string = 'Role:';
-  roles: Role[];
+  roles: RoleUpdateDTO[];
 
   constructor(
-    private roleService: RoleService,
+    private roleService: RolesService,
     private alertService: AlertService
   ){
     this.loadRoles();

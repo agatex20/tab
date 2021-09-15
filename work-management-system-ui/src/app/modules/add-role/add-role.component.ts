@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/alerts/services/alert.service';
-import { RoleService } from 'src/app/models/roles/role.service';
+import { RoleDTO } from 'src/app/dto/roleDTO';
+import { RolesService } from 'src/app/services/roles.service';
 
 @Component({
   selector: 'app-add-role',
@@ -10,13 +11,14 @@ import { RoleService } from 'src/app/models/roles/role.service';
 })
 export class AddRoleComponent implements OnInit {
   roleName: string = '';
-  accessLevels: Array<number> = [0, 1, 2, 3];
-  accessLevel: number;
+  accessLevels: Array<number> = [0, 1, 2, -1];
+  accessLevel: Number;
   title: string = 'Dodaj rolę';
+  role: RoleDTO;
 
   constructor(
-    private roleService: RoleService,
-    private alertService: AlertService
+    private roleService: RolesService,
+    private alertService: AlertService,
     ) { }
 
   ngOnInit(): void {

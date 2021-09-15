@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/alerts/services/alert.service';
-import { AbsenceTypeService } from 'src/app/models/absenceType/absence-type.service';
+import { AbsenceTypeService } from 'src/app/services/absence-type.service';
 
 @Component({
   selector: 'app-add-leaves-type',

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
-import { Absence } from 'src/app/models/absence/absence.model';
-import { AbsenceType } from 'src/app/models/absenceType/absence-type.model';
-import { AbsenceService } from 'src/app/models/absence/absence.service';
-import { AbsenceTypeService } from 'src/app/models/absenceType/absence-type.service';
-import { User } from 'src/app/models/user/user.model';
-import { UserService } from 'src/app/models/user/user.service';
+import { Absence } from 'src/app/dto/absence';
+import { AbsenceTypeUpdateDTO } from 'src/app/dto/absenceTypeUpdateDTO';
+import { AbsencesService } from 'src/app/services/absences.service';
+import { AbsenceTypeService } from 'src/app/services/absence-type.service';
+import { UsersService } from 'src/app/services/user.service';
+import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
 
 @Component({
   selector: 'app-leaves',
@@ -13,16 +13,16 @@ import { UserService } from 'src/app/models/user/user.service';
   styleUrls: ['./leaves.component.css']
 })
 export class LeavesComponent implements OnInit {
-  employees: User[];
+  employees: UserUpdateDTO[];
   title: string = 'Urlopy:';
   selectedType: string;
   absences: Absence[];
-  absenceTypes: AbsenceType[];
+  absenceTypes: AbsenceTypeUpdateDTO[];//AbsenceType[];
   
   constructor(
-    private userService: UserService,
-    private absenceService: AbsenceService,
-    private absenceTypeService: AbsenceTypeService
+    private userService: UsersService,
+    private absenceTypeService: AbsenceTypeService,
+    private absencesService: AbsencesService,
   ){
     this.loadEmployees();
     this.loadAbsenceTypes();
@@ -38,7 +38,7 @@ export class LeavesComponent implements OnInit {
   }
 
   loadAbsences(userId: string) {
-    this.absenceService.getAbsence(userId)
+    this.absencesService.getFromWorker(userId)
       .pipe(first())
       .subscribe(absences => this.absences = absences);
   }
@@ -58,20 +58,16 @@ export class LeavesComponent implements OnInit {
     if (!type) {
       return ''
     }
-    return type.name
-  }
-
-  getDate(date: string) {
-    return date.substring(0,10);
+    return this.translate(type.name);
   }
 
   translate(word: string) {
     if(word==='maternity')
-      return 'macierzyński';
+      return 'urlop macierzyński';
     if(word==='vacation')
-      return 'wakacje';
+      return 'urlop wypoczynkowy';
     if(word==='on demand')
-      return 'na żądanie';;
+      return 'urlop na żądanie';;
     return word;
   }
 

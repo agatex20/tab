@@ -21,8 +21,8 @@
     <tbody>
         <tr *ngFor="let a of absences">
             <td>{{getTypeName(a.absenceTypeId)}}</td>
-            <td>{{getDate(a.startDate)}}</td>
-            <td>{{getDate(a.endDate)}}</td>
+            <td>{{a.startDate | date:'shortDate'}}</td>
+            <td>{{a.endDate | date:'shortDate'}}</td>
             <td>{{(translateBool(a.confirmed))}}</td>
         </tr>
     </tbody>

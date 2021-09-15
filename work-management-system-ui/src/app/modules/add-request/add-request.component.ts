@@ -1,15 +1,12 @@
-import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
 import { AlertService } from 'src/app/alerts/services/alert.service';
 import { AuthenticationService } from 'src/app/authentication/authentication.service';
-import { AbsenceService } from 'src/app/models/absence/absence.service';
-import { AbsenceType } from 'src/app/models/absenceType/absence-type.model';
-import { AbsenceTypeService } from 'src/app/models/absenceType/absence-type.service';
-import { LeaveRequest } from 'src/app/models/leave-requests/leave-request.model';
-import { LeaveRequestService } from 'src/app/models/leave-requests/leave-request.service';
-import { User } from 'src/app/models/user/user.model';
+import { AbsencesService } from 'src/app/services/absences.service';
+import { AbsenceTypeUpdateDTO } from 'src/app/dto/absenceTypeUpdateDTO';
+import { AbsenceTypeService } from 'src/app/services/absence-type.service';
+import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
 
 @Component({
   selector: 'app-add-request',
@@ -17,17 +14,17 @@ import { User } from 'src/app/models/user/user.model';
   styleUrls: ['./add-request.component.css']
 })
 export class AddRequestComponent implements OnInit {   
-  absenceTypes: AbsenceType[];
+  absenceTypes: AbsenceTypeUpdateDTO[];
   selectedType: string;
   startDate: string;
   endDate: string;
   title: string = 'Wnioskuj o urlop';
-  currentUser: User;
+  currentUser: UserUpdateDTO;
 
   constructor(
     private authenticationService: AuthenticationService,
     private absenceTypeService: AbsenceTypeService,
-    private absenceService: AbsenceService,
+    private absenceService: AbsencesService,
     private alertService: AlertService
   ) {
     //this.currentUser = this.authenticationService.currentUserValue;
@@ -44,7 +41,7 @@ export class AddRequestComponent implements OnInit {
       return;
     }
     
-    this.absenceService.addAbsence(this.startDate, this.endDate, '160e4f02-24c3-4660-23cd-08d93b33a952', this.selectedType)
+    this.absenceService.add(this.startDate, this.endDate, '160e4f02-24c3-4660-23cd-08d93b33a952', this.selectedType)
       .pipe(first())
       .subscribe(data => this.alertService.success("Dodano nową prośbę"));
   }

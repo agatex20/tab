@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RoleDTO } from '../dto/roleDTO';
 import { RoleUpdateDTO } from '../dto/roleUpdateDTO';
 import { AuthRequestService } from './auth-request.service';
 
@@ -14,12 +13,16 @@ export class RolesService {
     return this.authService.get<RoleUpdateDTO[]>('Roles');
   }
 
-  add(role: RoleDTO): Observable<RoleUpdateDTO> {
-    return this.authService.post<RoleUpdateDTO>('Roles', role);
+  add(name: string, accessLevel: number): Observable<RoleUpdateDTO> {
+    return this.authService.post<RoleUpdateDTO>('Roles', {name, accessLevel});
   }
 
   update(role: RoleUpdateDTO): Observable<RoleUpdateDTO> {
-    return this.authService.put<RoleUpdateDTO>('Roles', role);
+    let body = JSON.stringify(role);
+    let index = body.indexOf("\"accessLevel\":")
+    body = body.substring(0, index+14) + role.accessLevel + "}";
+    let json = JSON.parse(body);
+    return this.authService.put<RoleUpdateDTO>('Roles', json);
   }
 
   get(roleId: string): Observable<RoleUpdateDTO> {

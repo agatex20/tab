@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 
-import { User } from 'src/app/models/user/user.model';
-import { UserService } from 'src/app/models/user/user.service';
-import { Absence } from 'src/app/models/absence/absence.model';
-import { AbsenceService } from 'src/app/models/absence/absence.service';
+import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
+import { UsersService } from 'src/app/services/user.service';
+import { AbsenceUpdateDTO } from 'src/app/dto/absenceUpdateDTO';
+import { AbsencesService } from 'src/app/services/absences.service';
 import { AlertService } from 'src/app/alerts/services/alert.service';
-import { AbsenceTypeService } from 'src/app/models/absenceType/absence-type.service';
-import { AbsenceType } from 'src/app/models/absenceType/absence-type.model';
+import { AbsenceTypeService } from 'src/app/services/absence-type.service';
+import { AbsenceTypeUpdateDTO } from 'src/app/dto/absenceTypeUpdateDTO';
 
 declare var $: any;
 @Component({
@@ -16,14 +16,14 @@ declare var $: any;
   styleUrls: ['./leave-requests.component.css']
 })
 export class LeaveRequestsComponent implements OnInit {
-  requests: Absence[];
-  employees: User[];
-  absenceTypes: AbsenceType[];
+  requests: AbsenceUpdateDTO[];
+  employees: UserUpdateDTO[];
+  absenceTypes: AbsenceTypeUpdateDTO[];
   title: string = 'Prośby o urlop:';
 
   constructor(
-    private userService: UserService,
-    private absenceService: AbsenceService,
+    private userService: UsersService,
+    private absenceService: AbsencesService,
     private alertService: AlertService,
     private absenceTypeService: AbsenceTypeService
     ) {}
@@ -34,8 +34,9 @@ export class LeaveRequestsComponent implements OnInit {
     this.loadAbsenceTypes();
   }
 
-  onSubmit(absence: Absence) {
-    this.absenceService.approve(absence)
+  onSubmit(absence: AbsenceUpdateDTO) {
+    absence.confirmed = true;
+    this.absenceService.update(absence)
       .pipe(first())
       .subscribe(data => {
         this.alertService.success("Zatwierdzono");
@@ -52,7 +53,7 @@ export class LeaveRequestsComponent implements OnInit {
   }
   
   loadRequests() {
-    this.absenceService.getAllActive()
+    this.absenceService.getActive()
       .pipe(first())
       .subscribe(requests => this.requests = requests);
   }

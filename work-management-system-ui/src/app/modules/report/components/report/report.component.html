@@ -2,7 +2,7 @@
     <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
     <form class="add-form" (ngSubmit)="onSubmit()">   
         <div class="select" style="width:200px;">
-            <select (change)="selectChangeHandler($event)" id=standard-select style="margin-bottom: 4%; margin-left: 5px; " class="form-select" [(ngModel)]="selectedType">
+            <select (change)="selectChangeHandler($event)" id=standard-select class="form-select" [(ngModel)]="selectedType">
                 <option *ngFor="let e of employees" [value]="e.userId">
                     {{ e.firstName + " " + e.lastName }}
                 </option>
@@ -36,8 +36,8 @@
     <tbody>
         <tr *ngFor="let a of selectedAbsences">
             <td>{{getTypeName(a.absenceTypeId)}}</td>
-            <td>{{getDate(a.startDate)}}</td>
-            <td>{{getDate(a.endDate)}}</td>
+            <td>{{a.startDate | date:'shortDate'}}</td>
+            <td>{{a.endDate | date:'shortDate'}}</td>
             <td>{{translateBool(a.confirmed)}}</td>
         </tr>
     </tbody>

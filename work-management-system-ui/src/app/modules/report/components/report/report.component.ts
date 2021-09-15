@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { first, take } from 'rxjs/operators';
-import { Absence } from 'src/app/models/absence/absence.model';
-import { AbsenceService } from 'src/app/models/absence/absence.service';
-import { AbsenceType } from 'src/app/models/absenceType/absence-type.model';
-import { AbsenceTypeService } from 'src/app/models/absenceType/absence-type.service';
-import { LeaveRequest } from 'src/app/models/leave-requests/leave-request.model';
-import { User } from 'src/app/models/user/user.model';
-import { UserService } from 'src/app/models/user/user.service';
+import { first } from 'rxjs/operators';
+import { AbsenceUpdateDTO } from 'src/app/dto/absenceUpdateDTO';
+import { AbsenceTypeUpdateDTO } from 'src/app/dto/absenceTypeUpdateDTO';
+import { AbsenceTypeService } from 'src/app/services/absence-type.service';
+import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
+import { UsersService } from 'src/app/services/user.service';
+import { AbsencesService } from 'src/app/services/absences.service';
 
 @Component({
   selector: 'app-report',
@@ -18,16 +17,16 @@ export class ReportComponent implements OnInit {
   leftDays: number;
   startDate: string;
   endDate: string;
-  employees: User[];
-  absences: Absence[]; 
-  absenceTypes: AbsenceType[];
-  selectedAbsences: Absence[];
+  employees: UserUpdateDTO[];
+  absences: AbsenceUpdateDTO[]; 
+  absenceTypes: AbsenceTypeUpdateDTO[];
+  selectedAbsences: AbsenceUpdateDTO[];
   selectedType: string;
   selectedUserId: string;
   
   constructor(
-    private userService: UserService,
-    private absenceService: AbsenceService,
+    private userService: UsersService,
+    private absenceService: AbsencesService,
     private absenceTypeService: AbsenceTypeService
   ){
     this.selectedAbsences = this.absences;
@@ -45,7 +44,7 @@ export class ReportComponent implements OnInit {
   }
 
   loadAbsences(userId: string) {
-    this.absenceService.getAbsence(userId)
+    this.absenceService.getFromWorker(userId)
       .pipe(first())
       .subscribe(absences => {
         this.absences = absences;
@@ -53,7 +52,7 @@ export class ReportComponent implements OnInit {
 
         for (let a of this.absences)
         {
-          if((!this.startDate || a.startDate >=this.startDate) && (!this.endDate || a.endDate <= this.endDate))
+          if((!this.startDate || a.startDate.toDateString() >=this.startDate) && (!this.endDate || a.endDate.toDateString() <= this.endDate))
           {
             this.selectedAbsences.push(a);
           }
@@ -77,10 +76,6 @@ export class ReportComponent implements OnInit {
       return ''
     }
     return this.translate(type.name);
-  }
-
-  getDate(date: string) {
-    return date.substring(0,10);
   }
 
   loadDaysCount(id: string) {

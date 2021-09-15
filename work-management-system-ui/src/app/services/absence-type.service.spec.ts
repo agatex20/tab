@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { LeaveRequestService } from './leave-request.service';
+import { AbsenceTypeService } from './absence-type.service';
 
-describe('LeaveRequestService', () => {
-  let service: LeaveRequestService;
+describe('AbsenceTypeService', () => {
+  let service: AbsenceTypeService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LeaveRequestService);
+    service = TestBed.inject(AbsenceTypeService);
   });
 
   it('should be created', () => {

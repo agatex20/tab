@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/alerts/services/alert.service';
-import { AbsenceType } from 'src/app/models/absenceType/absence-type.model';
-import { AbsenceTypeService } from 'src/app/models/absenceType/absence-type.service';
-import { User } from 'src/app/models/user/user.model';
+import { AbsenceTypeUpdateDTO } from 'src/app/dto/absenceTypeUpdateDTO';
+import { AbsenceTypeService } from 'src/app/services/absence-type.service';
+import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
 
 @Component({
   selector: 'app-leaves-types',
@@ -12,8 +12,8 @@ import { User } from 'src/app/models/user/user.model';
 })
 export class LeavesTypesComponent implements OnInit {
   title: string = 'Typy urlopów:';
-  absenceTypes: AbsenceType[];
-  currentUser: User;
+  absenceTypes: AbsenceTypeUpdateDTO[];
+  currentUser: UserUpdateDTO;
 
   ngOnInit(): void { }
 
