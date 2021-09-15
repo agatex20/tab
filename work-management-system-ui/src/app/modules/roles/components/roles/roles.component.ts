@@ -40,6 +40,7 @@ export class RolesComponent implements OnInit {
       .pipe(first())
       .subscribe(data => {
         this.alertService.success("Usunięto");
+        location.reload();
       },
       error => {
         this.alertService.error(error);
@@ -52,5 +53,16 @@ export class RolesComponent implements OnInit {
         .pipe(first())
         .subscribe(data => console.log(data))
     }
+    setTimeout(() => location.reload(), 1000);
+  }
+
+  translate(word: string) {
+    if(word==='worker')
+      return 'pracownik';
+    if(word==='admin')
+      return 'administrator';
+    if(word==='unassigned')
+      return 'nieprzypisana';;
+    return word;
   }
 }

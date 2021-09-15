@@ -25,6 +25,11 @@ title: string = 'Dodaj typ urlopu';
   onSubmit(){
     this.absenceTypeService.add(this.leaveName, this.ifTakesLeave)
       .pipe(first())
-      .subscribe(data => this.alertService.success("Dodano nowy typ urlopu"));
+      .subscribe(
+        data => {
+          this.alertService.success("Dodano nowy typ urlopu")},
+        error => {
+          this.alertService.error(error);
+        });
   }
 }

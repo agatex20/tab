@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit {
       })
       .subscribe({
         next: (authResponse: AuthResponse) => {
-          console.log('ss', authResponse);
           this.rolesService.get(authResponse.loggedUser.roleId).subscribe({
             next: (role: RoleUpdateDTO) => {
               this.authenticationService.login(authResponse, role.accessLevel);

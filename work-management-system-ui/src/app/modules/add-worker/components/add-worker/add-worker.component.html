@@ -17,8 +17,15 @@
           <label  style="margin-left: 5px;" for="password" >Haslo</label>
           <input type="password" name="password" [(ngModel)]="password" id="password" placeholder="hasło"/>
         </div>
-        
-        <input [disabled]="loading" type="submit" value="Dodaj" class="btn btn-block" style="background-color:goldenrod" >
+        <div class="select" style="width:100%;">
+          <select (change)="selectChangeHandler($event)" style="font-size: x-large;"  class="form-select" >
+              <option *ngFor="let r of roles" [value]="r.roleId">
+                  {{ translate(r.name) }}
+              </option>
+              <span class="focus"></span>
+          </select>
+        </div>
+        <input type="submit" value="Dodaj" class="btn btn-block" style="background-color:goldenrod" >
   
       </form>
       
