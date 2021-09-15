@@ -11,7 +11,7 @@ import { AuthRequestService } from './auth-request.service';
 @Injectable({
   providedIn: 'root',
 })
-export class BEAbsencesService {
+export class AbsencesService {
   constructor(private authService: AuthRequestService) {}
 
   eg: AbsenceDTO = {
