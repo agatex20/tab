@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
-import { AuthenticationService } from "../../../../authentication/authentication.service";
-import { Configuration } from "../../../../config";
+import { Router } from '@angular/router';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Configuration } from '../../../../config';
+import { BackEndAuthService } from 'src/app/services/back-end-auth.service';
+import { AuthResponse } from 'src/app/dto/authResponse';
+import { RolesService } from 'src/app/services/roles.service';
+import { RoleUpdateDTO } from 'src/app/dto/roleUpdateDTO';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({
-    username: new FormControl ('', Validators.required),
-    password: new FormControl ('', Validators.required)
+    username: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
   });
   loading = false;
   submitted = false;
@@ -17,12 +25,13 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthService,
+    private loginService: BackEndAuthService,
+    private rolesService: RolesService
   ) {
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
+    if (this.authenticationService.loggedUser) {
       this.router.navigate(['/']);
     }
   }
@@ -30,12 +39,14 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
     });
   }
 
   // convenience getter for easy access to form fields
-  get f() { return this.loginForm.controls; }
+  get f() {
+    return this.loginForm.controls;
+  }
 
   onSubmit() {
     this.submitted = true;
@@ -46,16 +57,36 @@ export class LoginComponent implements OnInit {
     }
 
     this.loading = true;
-    this.authenticationService.login(this.f.username.value, this.f.password.value)
-      .pipe(first())
+
+    this.loginService
+      .login({
+        email: this.f.username.value,
+        password: this.f.password.value,
+      })
       .subscribe({
-        next: () => {
-          this.router.navigate([Configuration.DefaultAdminPage]);
+        next: (authResponse: AuthResponse) => {
+          console.log('ss', authResponse);
+          this.rolesService.get(authResponse.loggedUser.roleId).subscribe({
+            next: (role: RoleUpdateDTO) => {
+              this.authenticationService.login(authResponse, role.accessLevel);
+              this.loginAproved();
+            },
+            //blad integralnosci bazy (nie powinien sie zdarzyc())
+            error: (error) => {
+              error.console.log(error);
+            },
+          });
         },
-        error: error => {
-          this.error = error;
+        //zle dane logowania
+        error: (error) => {
+          console.log('zle dane logowania');
           this.loading = false;
-        }
+        },
       });
+  }
+
+  loginAproved() {
+    this.loading = false;
+    this.router.navigate([Configuration.DefaultAdminPage]);
   }
 }
