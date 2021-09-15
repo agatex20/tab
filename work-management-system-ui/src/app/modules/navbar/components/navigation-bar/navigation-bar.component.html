@@ -1,29 +1,50 @@
 <div class="nav">
-
   <!-- tu bedzie foreach dla kazdego odnosnika z tablicy -->
   <div>
-    <button (click)="logOut()" class="btn btn-block" style="background-color: gray;">Wyloguj</button>
+    <button
+      (click)="logOut()"
+      class="btn btn-block"
+      style="background-color: gray"
+    >
+      Wyloguj
+    </button>
   </div>
   <div>
-    <button routerLink="/add-request" class="btn btn-block">Dodaj prośbę</button>
+    <button routerLink="/add-request" class="btn btn-block">
+      Dodaj prośbę
+    </button>
   </div>
   <div>
-    <button routerLink="/add-worker" class="btn btn-block">Dodaj pracownika</button>
+    <button *ngIf="isManager" routerLink="/add-worker" class="btn btn-block">
+      Dodaj pracownika
+    </button>
   </div>
   <div>
-    <button routerLink="/leave-requests" class="btn btn-block">Prośby o urlop</button>
+    <button
+      *ngIf="isManager"
+      routerLink="/leave-requests"
+      class="btn btn-block"
+    >
+      Prośby o urlop
+    </button>
   </div>
   <div>
     <button routerLink="/leaves" class="btn btn-block">Urlopy</button>
   </div>
   <div>
-    <button routerLink="/leaves-types" class="btn btn-block">Typy urlopów</button>
+    <button *ngIf="isManager" routerLink="/leaves-types" class="btn btn-block">
+      Typy urlopów
+    </button>
   </div>
   <div>
-    <button routerLink="/report" class="btn btn-block">Raport</button>
+    <button *ngIf="isManager" routerLink="/report" class="btn btn-block">
+      Raport
+    </button>
   </div>
   <div>
-    <button routerLink="/roles" class="btn btn-block">Role</button>
+    <button *ngIf="isManager" routerLink="/roles" class="btn btn-block">
+      Role
+    </button>
   </div>
   <div>
     <button routerLink="/help" class="btn btn-block">Pomoc</button>

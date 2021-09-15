@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccessLevelEnum } from 'src/app/dto/accessLevelEnum';
 import { AuthRequestService } from 'src/app/services/auth-request.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { NavigationBarService } from '../../services/navigation-bar.service';
@@ -32,5 +33,12 @@ export class NavigationBarComponent implements OnInit {
   logOut(): void {
     this.authenticationService.logout();
     this.router.navigate(['/login']);
+  }
+
+  get isManager(): boolean {
+    return (
+      this.authenticationService.accessLvl === AccessLevelEnum.Manager ||
+      this.authenticationService.accessLvl === AccessLevelEnum.Admin
+    );
   }
 }

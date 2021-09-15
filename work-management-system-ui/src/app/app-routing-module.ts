@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './modules/login/components/login-page/login.component';
 import { AddWorkerComponent } from './modules/add-worker/components/add-worker/add-worker.component';
-import { AuthGuard } from "./authentication/auth.guard";
+import { LoggedGuard } from './authentication/logged.guard';
 import { LeaveRequestsComponent } from './modules/leave-requests/components/leave-requests/leave-requests.component';
 import { LeavesComponent } from './modules/leaves/components/leaves/leaves.component';
 import { AddRequestComponent } from './modules/add-request/add-request.component';
@@ -13,29 +13,60 @@ import { AddRoleComponent } from './modules/add-role/add-role.component';
 import { HelpComponent } from './modules/help/components/help/help.component';
 import { ReportComponent } from './modules/report/components/report/report.component';
 import { ChangePasswordComponent } from './modules/change-password/change-password.component';
-import { AppComponent } from "./app.component";
-import { PageNotFound } from "./utils/components/PageNotFound/page-not-found.component";
+import { AppComponent } from './app.component';
+import { PageNotFound } from './utils/components/PageNotFound/page-not-found.component';
+import { ManagerGuard } from './authentication/manager.guard';
+import { NotLoggedGuard } from './authentication/not-logged.guard';
+import { UnAuthorizedComponent } from './utils/components/un-authorized/un-authorized.component';
 
 const routes: Routes = [
-  {path: '', redirectTo: 'login', pathMatch:'full'},
-  {path: 'login', component: LoginComponent},
-  {path: 'add-worker', component: AddWorkerComponent},
-  {path: 'leave-requests', component: LeaveRequestsComponent, canActivate: [AuthGuard]},
-  {path: 'leaves', component: LeavesComponent, canActivate: [AuthGuard]},
-  {path: 'add-request', component: AddRequestComponent, canActivate: [AuthGuard]},
-  {path: 'roles', component: RolesComponent, canActivate: [AuthGuard]},
-  {path: 'leaves-types', component: LeavesTypesComponent, canActivate: [AuthGuard]},
-  {path: 'add-leave-type', component: AddLeavesTypeComponent, canActivate: [AuthGuard]},
-  {path: 'add-role', component: AddRoleComponent, canActivate: [AuthGuard]},
-  {path: 'help', component: HelpComponent, canActivate: [AuthGuard]},
-  {path: 'report', component: ReportComponent, canActivate: [AuthGuard]},
-  {path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard]},
-  {path: '**', component: PageNotFound },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, canActivate: [NotLoggedGuard] },
+  {
+    path: 'add-worker',
+    component: AddWorkerComponent,
+    canActivate: [ManagerGuard],
+  },
+  {
+    path: 'leave-requests',
+    component: LeaveRequestsComponent,
+    canActivate: [ManagerGuard],
+  },
+  { path: 'leaves', component: LeavesComponent, canActivate: [LoggedGuard] },
+  {
+    path: 'add-request',
+    component: AddRequestComponent,
+    canActivate: [LoggedGuard],
+  },
+  { path: 'roles', component: RolesComponent, canActivate: [ManagerGuard] },
+  {
+    path: 'leaves-types',
+    component: LeavesTypesComponent,
+    canActivate: [ManagerGuard],
+  },
+  {
+    path: 'add-leave-type',
+    component: AddLeavesTypeComponent,
+    canActivate: [ManagerGuard],
+  },
+  {
+    path: 'add-role',
+    component: AddRoleComponent,
+    canActivate: [ManagerGuard],
+  },
+  { path: 'help', component: HelpComponent, canActivate: [LoggedGuard] },
+  { path: 'report', component: ReportComponent, canActivate: [LoggedGuard] },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    canActivate: [LoggedGuard],
+  },
+  { path: 'un-authorized', component: UnAuthorizedComponent },
+  { path: '**', component: PageNotFound },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}

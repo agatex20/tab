@@ -24,6 +24,7 @@ import { AddRoleComponent } from './modules/add-role/add-role.component';
 import { ChangePasswordComponent } from './modules/change-password/change-password.component';
 import { PageNotFound } from './utils/components/PageNotFound/page-not-found.component';
 import { LoginComponent } from './modules/login/components/login-page/login.component';
+import { UnAuthorizedComponent } from './utils/components/un-authorized/un-authorized.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { LoginComponent } from './modules/login/components/login-page/login.comp
     AddRoleComponent,
     ChangePasswordComponent,
     PageNotFound,
+    UnAuthorizedComponent,
   ],
   imports: [
     BrowserModule,
