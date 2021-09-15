@@ -11,9 +11,9 @@ import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
 @Component({
   selector: 'app-add-request',
   templateUrl: './add-request.component.html',
-  styleUrls: ['./add-request.component.css']
+  styleUrls: ['./add-request.component.css'],
 })
-export class AddRequestComponent implements OnInit {   
+export class AddRequestComponent implements OnInit {
   absenceTypes: AbsenceTypeUpdateDTO[];
   selectedType: string;
   startDate: string;
@@ -25,41 +25,45 @@ export class AddRequestComponent implements OnInit {
     private absenceTypeService: AbsenceTypeService,
     private absenceService: AbsencesService,
     private alertService: AlertService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.loadAbsenceTypes();
   }
 
   onSubmit() {
-    if(!this.startDate || !this.endDate || !this.selectedType)
-    {
-      this.alertService.error("Uzupełnij wszystkie dane");
+    if (!this.startDate || !this.endDate || !this.selectedType) {
+      this.alertService.error('Uzupełnij wszystkie dane');
       return;
     }
-    
-    this.absenceService.add(this.startDate, this.endDate, this.authService.loggedUser.userId, this.selectedType)
+
+    this.absenceService
+      .add(
+        this.startDate,
+        this.endDate,
+        this.authService.loggedUser.userId,
+        this.selectedType
+      )
       .pipe(first())
-      .subscribe(data => this.alertService.success("Dodano nową prośbę"));
+      .subscribe((data) => this.alertService.success('Dodano nową prośbę'));
   }
 
   loadAbsenceTypes() {
-    this.absenceTypeService.getAll()
+    this.absenceTypeService
+      .getAll()
       .pipe(first())
-      .subscribe(absenceTypes => this.absenceTypes = absenceTypes);
+      .subscribe((absenceTypes) => (this.absenceTypes = absenceTypes));
   }
 
   getTypeName(id: string) {
-    const type =  this.absenceTypes.find((type) => type.absenceTypeId === id)
+    const type = this.absenceTypes.find((type) => type.absenceTypeId === id);
     if (!type) {
-      return ''
+      return '';
     }
-    return type.name
+    return type.name;
   }
 
   selectChangeHandler(event: any) {
     this.selectedType = event.target.value;
   }
 }
-
-

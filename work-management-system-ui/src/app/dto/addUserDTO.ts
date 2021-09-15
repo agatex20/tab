@@ -11,6 +11,7 @@
  */
 
 export interface AddUserDTO {
+  roleId: string;
   email: string;
   password: string;
   firstName?: string;

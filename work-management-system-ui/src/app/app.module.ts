@@ -15,17 +15,15 @@ import { ReportComponent } from './modules/report/components/report/report.compo
 import { RolesComponent } from './modules/roles/components/roles/roles.component';
 import { SchemeComponent } from './modules/scheme/components/scheme/scheme.component';
 import { AlertComponent } from './alerts/components/alert/alert.component';
-import { ErrorInterceptor } from './interceptors/error.interceptor'
+// import { ErrorInterceptor } from './interceptors/error.interceptor'
 //import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AddRequestComponent } from './modules/add-request/add-request.component';
 import { LeavesTypesComponent } from './modules/leaves-types/leaves-types.component';
 import { AddLeavesTypeComponent } from './modules/add-leaves-type/add-leaves-type.component';
 import { AddRoleComponent } from './modules/add-role/add-role.component';
 import { ChangePasswordComponent } from './modules/change-password/change-password.component';
-import { PageNotFound } from "./utils/components/PageNotFound/page-not-found.component";
-import { LoginComponent } from "./modules/login/components/login-page/login.component";
-
-
+import { PageNotFound } from './utils/components/PageNotFound/page-not-found.component';
+import { LoginComponent } from './modules/login/components/login-page/login.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +44,7 @@ import { LoginComponent } from "./modules/login/components/login-page/login.comp
     AddLeavesTypeComponent,
     AddRoleComponent,
     ChangePasswordComponent,
-    PageNotFound
+    PageNotFound,
   ],
   imports: [
     BrowserModule,
@@ -54,13 +52,12 @@ import { LoginComponent } from "./modules/login/components/login-page/login.comp
     FormsModule,
     HttpClientModule,
     AppRoutingModule,
-    BrowserModule
+    BrowserModule,
   ],
   providers: [
     //{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

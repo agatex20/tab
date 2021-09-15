@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UrlConsts } from '../constants';
+import { AddUserDTO } from '../dto/addUserDTO';
 import { AuthResponse } from '../dto/authResponse';
 import { UserAuthorizationDTO } from '../dto/userAuthorizationDTO';
-import { UserRegistrationDTO } from '../dto/userRegistrationDTO';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,7 @@ import { UserRegistrationDTO } from '../dto/userRegistrationDTO';
 export class BackEndAuthService {
   constructor(private http: HttpClient) {}
 
-  register(user: UserRegistrationDTO): Observable<AuthResponse> {
+  register(user: AddUserDTO): Observable<AuthResponse> {
     return this.http.post<AuthResponse>(
       UrlConsts.localhost + '/Authorization/register',
       user
