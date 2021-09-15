@@ -45,4 +45,8 @@ export class NavigationBarComponent implements OnInit {
   get isAdmin(): Boolean {
     return this.authenticationService.accessLvl === AccessLevelEnum.Admin;
   }
+
+  get isWorker(): Boolean {
+    return this.authenticationService.accessLvl !== AccessLevelEnum.Undefined;
+  }
 }

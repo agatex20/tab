@@ -9,7 +9,7 @@
     </button>
   </div>
   <div>
-    <button routerLink="/add-request" class="btn btn-block">
+    <button *ngIf="isWorker" routerLink="/add-request" class="btn btn-block">
       Dodaj prośbę
     </button>
   </div>
@@ -28,7 +28,9 @@
     </button>
   </div>
   <div>
-    <button routerLink="/leaves" class="btn btn-block">Moje urlopy</button>
+    <button *ngIf="isWorker" routerLink="/leaves" class="btn btn-block">
+      Moje urlopy
+    </button>
   </div>
   <div>
     <button *ngIf="isManager" routerLink="/leaves-types" class="btn btn-block">

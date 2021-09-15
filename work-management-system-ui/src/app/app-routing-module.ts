@@ -19,6 +19,7 @@ import { ManagerGuard } from './authentication/manager.guard';
 import { NotLoggedGuard } from './authentication/not-logged.guard';
 import { UnAuthorizedComponent } from './utils/components/un-authorized/un-authorized.component';
 import { AdminGuard } from './authentication/admin.guard';
+import { WorkerGuard } from './authentication/worker.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -37,7 +38,7 @@ const routes: Routes = [
   {
     path: 'add-request',
     component: AddRequestComponent,
-    canActivate: [LoggedGuard],
+    canActivate: [WorkerGuard],
   },
 
   {
