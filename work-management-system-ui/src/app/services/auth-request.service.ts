@@ -14,7 +14,7 @@ export class AuthRequestService {
 
   //po zalogowaniu nalezy ustawic logged user i accessLvl
   public accessLvl: AccessLevelEnum = AccessLevelEnum.Undefined;
-  public loggedUser?: UserResponse;
+  private loggedUser?: UserResponse;
 
   private get headers() {
     return new HttpHeaders({
@@ -38,12 +38,6 @@ export class AuthRequestService {
 
   removeToken() {
     this.auth_token = '';
-  }
-
-  logout() {
-    this.removeUser();
-    this.removeToken();
-    this.accessLvl = AccessLevelEnum.Undefined;
   }
 
   get<T>(endpoint: string): Observable<T> {
