@@ -12,10 +12,10 @@ import { UsersService } from 'src/app/services/user.service';
 })
 export class AddWorkerComponent implements OnInit {
   loading = false;
-  username: string;
-  password: string;
-  firstname: string;
-  lastname: string;
+  username?: string;
+  password?: string;
+  firstname?: string;
+  lastname?: string;
   title: string = 'Dodaj pracownika';
 
   constructor(
