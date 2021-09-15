@@ -7,3 +7,9 @@ export const LocalStorage = {
   auth_token: 'auth_token',
   accessLvl: 'accessLvl',
 };
+
+export const AbsencesTypesConsts = {
+  maternity: 'maternity',
+  vacation: 'vacation',
+  on_demand: 'on-demand',
+};

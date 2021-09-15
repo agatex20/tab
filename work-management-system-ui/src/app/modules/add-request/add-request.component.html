@@ -1,24 +1,39 @@
 <div class="container">
-    <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
-    <form class="add-form" (ngSubmit)="onSubmit()">           
-            <div class="form-control">
-                <label style="margin-left: 5px;"  for="startDate"  >Początek urlopu</label>
-                <input type="date" name="startDate" id="startDate" [(ngModel)]="startDate" placeholder="data"/>
-            </div>
-            <div class="form-control">
-                <label style="margin-left: 5px;"  for="endDate"  >Koniec urlopu</label>
-                <input type="date" name="endDate" id="endDate" [(ngModel)]="endDate" placeholder="data"/>
-            </div>
-            <div class="select" style="width:100%;">
-                <select (change)="selectChangeHandler($event)" style="font-size: x-large;"  class="form-select" [(ngModel)]="selectedType">
-                    <option *ngFor="let a of absenceTypes" [value]="a.absenceTypeId">
-                        {{ translate(a.name) }}
-                    </option>
-                    <span class="focus"></span>
-                </select>
-            </div>
-        <input type="submit" value="Wnioskuj" class="btn btn-block">
-    </form>
-    
-    
+  <h1 style="text-align: center; color: goldenrod">{{ title }}</h1>
+  <form class="add-form" (ngSubmit)="onSubmit()">
+    <div class="form-control">
+      <label style="margin-left: 5px" for="startDate">Początek urlopu</label>
+      <input
+        type="date"
+        name="startDate"
+        id="startDate"
+        [(ngModel)]="startDate"
+        placeholder="data"
+      />
+    </div>
+    <div class="form-control">
+      <label style="margin-left: 5px" for="endDate">Koniec urlopu</label>
+      <input
+        type="date"
+        name="endDate"
+        id="endDate"
+        [(ngModel)]="endDate"
+        placeholder="data"
+      />
+    </div>
+    <div class="select" style="width: 100%">
+      <select
+        (change)="selectChangeHandler($event)"
+        style="font-size: x-large"
+        class="form-select"
+        [(ngModel)]="selectedType"
+      >
+        <option *ngFor="let a of absenceTypes" [value]="a.absenceTypeId">
+          {{ translate(a.name) }}
+        </option>
+        <span class="focus"></span>
+      </select>
+    </div>
+    <input type="submit" value="Wnioskuj" class="btn btn-block" />
+  </form>
 </div>

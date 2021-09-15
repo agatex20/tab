@@ -7,6 +7,7 @@ import { AbsencesService } from 'src/app/services/absences.service';
 import { AbsenceTypeUpdateDTO } from 'src/app/dto/absenceTypeUpdateDTO';
 import { AbsenceTypeService } from 'src/app/services/absence-type.service';
 import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
+import { AbsencesTypesConsts } from 'src/app/constants';
 
 @Component({
   selector: 'app-add-request',
@@ -14,7 +15,7 @@ import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
   styleUrls: ['./add-request.component.css'],
 })
 export class AddRequestComponent implements OnInit {
-  absenceTypes: AbsenceTypeUpdateDTO[];
+  absenceTypes: AbsenceTypeUpdateDTO[] = [];
   selectedType: string;
   startDate: string;
   endDate: string;
@@ -47,10 +48,12 @@ export class AddRequestComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (data) => {
-          this.alertService.success('Dodano nową prośbę')},
-        error => {
+          this.alertService.success('Dodano nową prośbę');
+        },
+        (error) => {
           this.alertService.error(error);
-        });
+        }
+      );
   }
 
   loadAbsenceTypes() {
@@ -73,12 +76,9 @@ export class AddRequestComponent implements OnInit {
   }
 
   translate(word: string) {
-    if(word==='maternity')
-      return 'macierzyński';
-    if(word==='vacation')
-      return 'wakacje';
-    if(word==='on-demand')
-      return 'na żądanie';;
+    if (word === AbsencesTypesConsts.maternity) return 'macierzyński';
+    if (word === AbsencesTypesConsts.vacation) return 'wakacje';
+    if (word === AbsencesTypesConsts.on_demand) return 'na żądanie';
     return word;
   }
 }
