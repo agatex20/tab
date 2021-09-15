@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UrlConsts } from '../constants';
 import { AccessLevelEnum } from '../dto/accessLevelEnum';
+import { UserResponse } from '../dto/userResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -11,14 +12,25 @@ export class AuthRequestService {
   private auth_token: string =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InN0cmluZyIsImp0aSI6IjM0N2YxYjRlLTQwOTQtNDQyZC1iMTQ1LTU4MDU4YjBjZmMxMiIsImFjY2Vzc0xldmVsIjoiTWFuYWdlciIsIm5iZiI6MTYzMTYzODkzOSwiZXhwIjoxNjMxNjQwNzM5LCJpYXQiOjE2MzE2Mzg5Mzl9.FX2JLho-888DFBDthGD1DPV0TLhGHOhbVrwMtZSkOhQ';
 
-  //po zalogowaniu nalezy ustawic
+  //po zalogowaniu nalezy ustawic logged user i accessLvl
   public accessLvl: AccessLevelEnum = AccessLevelEnum.Undefined;
+  private loggedUser?: UserResponse;
 
-  private headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    Authorization: `Bearer ${this.auth_token}`,
-  });
+  private get headers() {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${this.auth_token}`,
+    });
+  }
   constructor(private http: HttpClient) {}
+
+  addUser(user: UserResponse) {
+    this.loggedUser = user;
+  }
+
+  removeUser() {
+    this.loggedUser = undefined;
+  }
 
   addToken(token: string) {
     this.auth_token = token;
