@@ -1,5 +1,4 @@
 <div class="nav">
-  <!-- tu bedzie foreach dla kazdego odnosnika z tablicy -->
   <div>
     <button
       (click)="logOut()"
@@ -29,7 +28,7 @@
     </button>
   </div>
   <div>
-    <button routerLink="/leaves" class="btn btn-block">Urlopy</button>
+    <button routerLink="/leaves" class="btn btn-block">Moje urlopy</button>
   </div>
   <div>
     <button *ngIf="isManager" routerLink="/leaves-types" class="btn btn-block">

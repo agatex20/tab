@@ -1,5 +1,5 @@
 export const UrlConsts = {
-  localhost: 'https://localhost:5001',
+  localhost: 'http://localhost:25889',
 };
 
 export const LocalStorage = {

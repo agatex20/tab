@@ -14,8 +14,8 @@ export class UsersService {
     return this.authService.get<UserUpdateDTO[]>('Users');
   }
 
-  add(user: AddUserDTO): Observable<UserUpdateDTO> {
-    return this.authService.post<UserUpdateDTO>('Users', user);
+  add(email: string, firstName: string, lastName: string, password: string, roleId: string): Observable<UserUpdateDTO> {
+    return this.authService.post<UserUpdateDTO>('Users', {email, password, firstName, lastName, roleId});
   }
 
   update(user: UserUpdateDTO): Observable<UserUpdateDTO> {

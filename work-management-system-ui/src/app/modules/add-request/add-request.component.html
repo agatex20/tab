@@ -12,7 +12,7 @@
             <div class="select" style="width:100%;">
                 <select (change)="selectChangeHandler($event)" style="font-size: x-large;"  class="form-select" [(ngModel)]="selectedType">
                     <option *ngFor="let a of absenceTypes" [value]="a.absenceTypeId">
-                        {{ a.name }}
+                        {{ translate(a.name) }}
                     </option>
                     <span class="focus"></span>
                 </select>

@@ -17,17 +17,7 @@
                 <td>{{r.startDate | date:'shortDate'}}</td>
                 <td>{{r.endDate | date:'shortDate'}}</td>
                 <td style="width: 20%;"> <button  (click)="onSubmit(r)" type="submit" value="Zatwierdź" class="btn btn-block">Zatwierdź</button></td>
-                <td style="width: 20%;"> <button  (click)="onReject(r.absenceId)" type="reject" value="Odrzuć" class="btn btn-block">Odrzuć</button></td>
-                <td>
-                    <div class="select">
-                    <select class="form-select" [(ngModel)]="r.userId">
-                        <option *ngFor="let e of employees" [value]="e.userId">
-                            {{e.firstName + " " + e.lastName}}
-                        </option>
-                        <span class="focus"></span>
-                        </select>
-                    </div>
-                </td>           
+                <td style="width: 20%;"> <button  (click)="onReject(r.absenceId)" type="reject" value="Odrzuć" class="btn btn-block">Odrzuć</button></td>          
             </tr>
         </tbody>
     </table>

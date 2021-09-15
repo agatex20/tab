@@ -1,9 +1,6 @@
-import { convertUpdateArguments } from '@angular/compiler/src/compiler_util/expression_converter';
 import { Component, OnInit } from '@angular/core';
 import { first } from 'rxjs/operators';
 import { AlertService } from 'src/app/alerts/services/alert.service';
-import { Role } from 'src/app/models/roles/role.model';
-import { RoleService } from 'src/app/models/roles/role.service';
 import { AccessLevelEnum } from 'src/app/dto/accessLevelEnum';
 import { RoleUpdateDTO } from 'src/app/dto/roleUpdateDTO'
 import { RolesService } from 'src/app/services/roles.service';
@@ -40,6 +37,7 @@ export class RolesComponent implements OnInit {
       .pipe(first())
       .subscribe(data => {
         this.alertService.success("Usunięto");
+        location.reload();
       },
       error => {
         this.alertService.error(error);
@@ -52,5 +50,16 @@ export class RolesComponent implements OnInit {
         .pipe(first())
         .subscribe(data => console.log(data))
     }
+    setTimeout(() => location.reload(), 1000);
+  }
+
+  translate(word: string) {
+    if(word==='worker')
+      return 'pracownik';
+    if(word==='admin')
+      return 'administrator';
+    if(word==='unassigned')
+      return 'nieprzypisana';;
+    return word;
   }
 }

@@ -43,8 +43,16 @@ export class LeavesTypesComponent implements OnInit {
         .pipe(first())
         .subscribe(data => console.log(data))
     }
-    setTimeout(() => location.reload(), 1000)
+    setTimeout(() => location.reload(), 1000);
   }
 
-  
+  translate(word: string) {
+    if(word==='maternity')
+      return 'urlop macierzyński';
+    if(word==='vacation')
+      return 'urlop wypoczynkowy';
+    if(word==='on demand')
+      return 'urlop na żądanie';;
+    return word;
+  }
 }

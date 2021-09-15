@@ -15,7 +15,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class LeavesComponent implements OnInit {
   employees: UserUpdateDTO[];
-  title: string = 'Urlopy:';
+  title: string = 'Moje urlopy:';
   selectedType: string;
   absences: Absence[];
   absenceTypes: AbsenceTypeUpdateDTO[];

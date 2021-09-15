@@ -52,7 +52,7 @@ export class ReportComponent implements OnInit {
 
         for (let a of this.absences)
         {
-          if((!this.startDate || a.startDate.toDateString() >=this.startDate) && (!this.endDate || a.endDate.toDateString() <= this.endDate))
+          if((!this.startDate || a.startDate.toDateString() >=this.startDate) || (!this.endDate || a.endDate.toDateString() <= this.endDate))
           {
             this.selectedAbsences.push(a);
           }
@@ -92,11 +92,11 @@ export class ReportComponent implements OnInit {
 
   translate(word: string) {
     if(word==='maternity')
-      return 'macierzyński';
+      return 'urlop macierzyński';
     if(word==='vacation')
-      return 'wakacje';
+      return 'urlop wypoczynkowy';
     if(word==='on demand')
-      return 'na żądanie';;
+      return 'urlop na żądanie';;
     return word;
   }
 

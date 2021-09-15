@@ -38,17 +38,27 @@ export class LeaveRequestsComponent implements OnInit {
     absence.confirmed = true;
     this.absenceService.update(absence)
       .pipe(first())
-      .subscribe(data => {
-        this.alertService.success("Zatwierdzono");
+      .subscribe(
+        data => {
+          this.alertService.success("Zatwierdzono");
+          location.reload();
+        },
+        error => {
+          this.alertService.error(error);
         });
   }
 
   onReject(absenceId: string) {
     this.absenceService.delete(absenceId)
       .pipe(first())
-      .subscribe(data => {
-        this.alertService.success("Usunięto");
-      });
+      .subscribe(
+        data => {
+          this.alertService.success("Usunięto");
+          location.reload();
+        },
+        error => {
+          this.alertService.error(error);
+        });
   }
   
   loadRequests() {
@@ -91,11 +101,11 @@ export class LeaveRequestsComponent implements OnInit {
 
   translate(word: string) {
     if(word==='maternity')
-      return 'macierzyński';
+      return 'urlop macierzyński';
     if(word==='vacation')
-      return 'wakacje';
+      return 'urlop wypoczynkowy';
     if(word==='on demand')
-      return 'na żądanie';;
+      return 'urlop na żądanie';;
     return word;
   }
 }

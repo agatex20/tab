@@ -45,7 +45,12 @@ export class AddRequestComponent implements OnInit {
         this.selectedType
       )
       .pipe(first())
-      .subscribe((data) => this.alertService.success('Dodano nową prośbę'));
+      .subscribe(
+        (data) => {
+          this.alertService.success('Dodano nową prośbę')},
+        error => {
+          this.alertService.error(error);
+        });
   }
 
   loadAbsenceTypes() {
@@ -65,5 +70,15 @@ export class AddRequestComponent implements OnInit {
 
   selectChangeHandler(event: any) {
     this.selectedType = event.target.value;
+  }
+
+  translate(word: string) {
+    if(word==='maternity')
+      return 'macierzyński';
+    if(word==='vacation')
+      return 'wakacje';
+    if(word==='on-demand')
+      return 'na żądanie';;
+    return word;
   }
 }

@@ -27,7 +27,12 @@ export class AddRoleComponent implements OnInit {
   onSubmit(){
     this.roleService.add(this.roleName, Number(this.accessLevel))
       .pipe(first())
-      .subscribe(data => this.alertService.success("Dodano nową rolę"));;
+      .subscribe(
+        data => {
+          this.alertService.success("Dodano nową rolę")},
+        error => {
+          this.alertService.error(error);
+        });
   }
 
   setAccessLevel(event: any) {
