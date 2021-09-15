@@ -1,3 +1,3 @@
 export const UrlConsts = {
-  localhost: 'http://localhost:25889',
+  localhost: 'https://localhost:5001',
 };

@@ -1,13 +1,10 @@
 <div class="container">
-
-    
     <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
     <table class="table"> 
         <thead>
             <tr>
                 <th >Typ</th>
                 <th>Czy zabiera dni urlopu</th>
-               
             </tr>
         </thead>
         <tbody>
@@ -19,7 +16,7 @@
         </tbody>
     </table>
     <div>
-    <button  onclick="location.href = 'http://localhost:4200/add-leave-type';"  class="btn btn-block">Dodaj</button>
+    <button [routerLink]="['/add-leave-type']" class="btn btn-block">Dodaj</button>
     </div>
     <div>
         <button  (click)="Accept()" class="btn btn-block">Zatwierdź</button>

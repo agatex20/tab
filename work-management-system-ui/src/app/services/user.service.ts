@@ -19,6 +19,7 @@ export class UsersService {
   }
 
   update(user: UserUpdateDTO): Observable<UserUpdateDTO> {
+    console.log("DUPA")
     return this.authService.put<UserUpdateDTO>('Users', user);
   }
 

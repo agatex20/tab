@@ -1,6 +1,4 @@
 <div class="container">
-
-    
     <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
     <table class="table" > 
         <thead>
@@ -25,7 +23,7 @@
         </tbody>
     </table>
         <div>
-            <button  onclick="location.href = 'http://localhost:4200/add-role';"  class="btn btn-block">Dodaj</button>
+            <button [routerLink]="['/add-role']" class="btn btn-block">Dodaj</button>
         </div>
         <div>
             <button  (click)="Accept()" class="btn btn-block">Zatwierdź</button>
