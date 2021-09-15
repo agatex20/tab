@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Absence } from './absence.model';
+import { Configuration } from "../../config";
 
 @Injectable({
   providedIn: 'root'

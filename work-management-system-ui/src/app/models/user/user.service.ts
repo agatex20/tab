@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { User } from './user.model';
+import { Configuration } from "../../config";
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,10 @@ export class UserService {
   }
 
   register(user: User) {
-    return this.http.post(`https://workmanagementsystemtab.azurewebsites.net/index.html/users/register`, user);
+    return this.http.post(`${Configuration.API_URL}users/register`, user);
   }
 
   delete(id: number) {
-    return this.http.delete(`https://workmanagementsystemtab.azurewebsites.net/index.html/users/${id}`);
+    return this.http.delete(`${Configuration.API_URL}users/${id}`);
   }
 }
