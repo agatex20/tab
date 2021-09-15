@@ -41,4 +41,8 @@ export class NavigationBarComponent implements OnInit {
       this.authenticationService.accessLvl === AccessLevelEnum.Admin
     );
   }
+
+  get isAdmin(): Boolean {
+    return this.authenticationService.accessLvl === AccessLevelEnum.Admin;
+  }
 }

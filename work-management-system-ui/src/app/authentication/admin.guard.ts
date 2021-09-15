@@ -11,7 +11,7 @@ import { AccessLevelEnum } from '../dto/accessLevelEnum';
 import { AuthService } from '../services/auth.service';
 
 @Injectable({ providedIn: 'root' })
-export class ManagerGuard implements CanActivate {
+export class AdminGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -22,10 +22,7 @@ export class ManagerGuard implements CanActivate {
       return false;
     }
     console.log(this.authService.accessLvl);
-    if (
-      this.authService.accessLvl === AccessLevelEnum.Manager ||
-      this.authService.accessLvl === AccessLevelEnum.Admin
-    ) {
+    if (this.authService.accessLvl === AccessLevelEnum.Admin) {
       return true;
     }
     // not logged in so redirect to login page with the return url

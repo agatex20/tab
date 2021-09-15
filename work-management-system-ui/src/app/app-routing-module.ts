@@ -18,6 +18,7 @@ import { PageNotFound } from './utils/components/PageNotFound/page-not-found.com
 import { ManagerGuard } from './authentication/manager.guard';
 import { NotLoggedGuard } from './authentication/not-logged.guard';
 import { UnAuthorizedComponent } from './utils/components/un-authorized/un-authorized.component';
+import { AdminGuard } from './authentication/admin.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -25,7 +26,7 @@ const routes: Routes = [
   {
     path: 'add-worker',
     component: AddWorkerComponent,
-    canActivate: [ManagerGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'leave-requests',
@@ -38,21 +39,22 @@ const routes: Routes = [
     component: AddRequestComponent,
     canActivate: [LoggedGuard],
   },
-  { path: 'roles', component: RolesComponent, canActivate: [ManagerGuard] },
+
   {
     path: 'leaves-types',
     component: LeavesTypesComponent,
-    canActivate: [ManagerGuard],
+    canActivate: [AdminGuard],
   },
   {
     path: 'add-leave-type',
     component: AddLeavesTypeComponent,
-    canActivate: [ManagerGuard],
+    canActivate: [AdminGuard],
   },
+  { path: 'roles', component: RolesComponent, canActivate: [AdminGuard] },
   {
     path: 'add-role',
     component: AddRoleComponent,
-    canActivate: [ManagerGuard],
+    canActivate: [AdminGuard],
   },
   { path: 'help', component: HelpComponent, canActivate: [LoggedGuard] },
   { path: 'report', component: ReportComponent, canActivate: [LoggedGuard] },
