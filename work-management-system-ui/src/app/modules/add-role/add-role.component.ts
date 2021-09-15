@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
+import { AlertService } from 'src/app/alerts/services/alert.service';
+import { RoleDTO } from 'src/app/dto/roleDTO';
+import { RolesService } from 'src/app/services/roles.service';
 
 @Component({
   selector: 'app-add-role',
@@ -7,15 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddRoleComponent implements OnInit {
   roleName: string = '';
-  ifValu1: boolean =true;
-  ifValu2: boolean =true;
+  accessLevels: Array<number> = [0, 1, 2, -1];
+  accessLevel: Number;
+  title: string = 'Dodaj rolę';
+  role: RoleDTO;
 
-title: string = 'Dodaj rolę';
-  constructor() { }
+  constructor(
+    private roleService: RolesService,
+    private alertService: AlertService,
+    ) { }
 
   ngOnInit(): void {
   }
-  onSubmit(){
 
+  onSubmit(){
+    this.roleService.add(this.roleName, Number(this.accessLevel))
+      .pipe(first())
+      .subscribe(data => this.alertService.success("Dodano nową rolę"));;
+  }
+
+  setAccessLevel(event: any) {
+    this.accessLevel = event.target.value;
   }
 }

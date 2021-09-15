@@ -25,16 +25,17 @@ export class AbsencesService {
     return this.authService.get<AbsenceUpdateDTO[]>('Absences');
   }
 
-  add(absence: AbsenceDTO): Observable<AbsenceUpdateDTO> {
-    return this.authService.post<AbsenceUpdateDTO>('Absences', absence);
+  //add(absence: AbsenceDTO): Observable<AbsenceUpdateDTO> {
+  add(startDate: string, endDate: string, userId: string, absenceTypeId: string) {
+    return this.authService.post<AbsenceUpdateDTO>('Absences', {startDate, endDate, userId, absenceTypeId});
   }
 
   update(absence: AbsenceUpdateDTO): Observable<AbsenceUpdateDTO> {
     return this.authService.put<AbsenceUpdateDTO>('Absences', absence);
   }
 
-  getFromWorker(workerId: string): Observable<Absence> {
-    return this.authService.get<Absence>(`Absences/worker/${workerId}`);
+  getFromWorker(workerId: string): Observable<Absence[]> {
+    return this.authService.get<Absence[]>(`Absences/worker/${workerId}`);
   }
 
   getActive() {

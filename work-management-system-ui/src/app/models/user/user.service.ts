@@ -12,7 +12,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   getAll() {
-    return this.http.get<User[]>(`${Configuration.API_URL}users`);
+    return this.http.get<User[]>(`http://localhost:25889/Users`);
   }
 
   register(user: User) {

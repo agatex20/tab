@@ -8,11 +8,11 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AccessLevelEnum } from '../dto/accessLevelEnum';
-import { AuthRequestService } from '../services/auth-request.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class TestGuard implements CanActivate {
-  constructor(private router: Router, private auth: AuthRequestService) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,

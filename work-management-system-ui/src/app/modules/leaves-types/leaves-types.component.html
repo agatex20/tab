@@ -1,27 +1,22 @@
 <div class="container">
-
-    
     <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
     <table class="table"> 
         <thead>
             <tr>
                 <th >Typ</th>
                 <th>Czy zabiera dni urlopu</th>
-               
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let people of data">
-                <td>{{people.type}}</td>
-                <td ><input  type="checkbox" ng-model="people.value1"></td>
-                <td style="width: 20%;"> <button (click)="onDelete()" class="btn btn-block" style="margin-top: 20px;">Usuń</button></td>
-                
-               
+            <tr *ngFor="let a of absenceTypes">
+                <td>{{a.name}}</td>
+                <td ><input  type="checkbox" [(ngModel)]="a.ifShorted"></td>
+                <td style="width: 20%;"> <button (click)="onDelete(a.absenceTypeId)" class="btn btn-block" style="margin-top: 20px;">Usuń</button></td>
             </tr>
         </tbody>
     </table>
     <div>
-    <button  onclick="location.href = 'http://localhost:4200/add-leave-type';"  class="btn btn-block">Dodaj</button>
+    <button [routerLink]="['/add-leave-type']" class="btn btn-block">Dodaj</button>
     </div>
     <div>
         <button  (click)="Accept()" class="btn btn-block">Zatwierdź</button>

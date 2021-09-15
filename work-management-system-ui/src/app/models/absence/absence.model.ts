@@ -1,14 +1,15 @@
 export class Absence {
-    id: number;
+    absenceId: string;
+    confirmed: boolean;
     startDate: string;
     endDate: string;
-    type: string;
-    employee: string;
+    absenceTypeId: string;
+    userId: string;
 
-    constructor(startDate, endDate, type, employee) {
+    constructor(startDate, endDate, absenceTypeId, userId) {
         this.startDate = startDate;
         this.endDate = endDate;
-        this.type = type;
-        this.employee = employee;
+        this.absenceTypeId = absenceTypeId;
+        this.userId = userId;
     }
 }

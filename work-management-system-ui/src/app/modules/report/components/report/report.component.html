@@ -2,38 +2,43 @@
     <h1 style="text-align: center; color: goldenrod;">{{title}}</h1>
     <form class="add-form" (ngSubmit)="onSubmit()">   
         <div class="select" style="width:200px;">
-            <select  style="width: 100%; margin-left: 5px; font-size: large;" class="form-select">
-                <option *ngFor="let e of employees">
-                    {{e.username}}
+            <select (change)="selectChangeHandler($event)" id=standard-select class="form-select" [(ngModel)]="selectedType">
+                <option *ngFor="let e of employees" [value]="e.userId">
+                    {{ e.firstName + " " + e.lastName }}
                 </option>
-            <span class="focus"></span>
+                <span class="focus"></span>
             </select>
-        </div>        
+        </div>
+        <div>  
+            <h2 style="text-align: right; color: goldenrod;">Pozostałe dni urlopu {{leftDays}}</h2>   
+        </div>   
         <div class="form-control">
-            <label style="margin-left: 5px;"  for="startDate"  >Początek urlopu</label>
+            <label style="margin-left: 5px;"  for="startDate"  >Raport od</label>
             <input type="date" name="startDate" id="startDate" [(ngModel)]="startDate" placeholder="data"/>
         </div>
         <div class="form-control">
-            <label style="margin-left: 5px;"  for="endDate"  >Koniec urlopu</label>
+            <label style="margin-left: 5px;"  for="endDate"  >Raport do</label>
             <input type="date" name="endDate" id="endDate" [(ngModel)]="endDate" placeholder="data"/>
         </div>
     <input type="submit" value="Generuj" class="btn btn-block">
 
 </form>
 
-<table class="table"> 
+<table class="table" style="margin-top: 20px;">  
     <thead>
         <tr>
             <th >Typ</th>
             <th >Data początkowa</th>
             <th >Data końcowa</th>
+            <th>Czy zatwierdzona</th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let a of absences">
-            <td>{{a.type}}</td>
-            <td>{{a.startDate}}</td>
-            <td>{{a.endDate}}</td>
+        <tr *ngFor="let a of selectedAbsences">
+            <td>{{getTypeName(a.absenceTypeId)}}</td>
+            <td>{{a.startDate | date:'shortDate'}}</td>
+            <td>{{a.endDate | date:'shortDate'}}</td>
+            <td>{{translateBool(a.confirmed)}}</td>
         </tr>
     </tbody>
 </table>

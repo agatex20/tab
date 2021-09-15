@@ -1,10 +1,11 @@
 export class User {
-    id: number;
+    userId: string;
     username: string;
     password: string;
     firstName: string;
     lastName: string;
-    token?: string;
+    token: string;
+    vacationDaysCount: number;
 
     constructor(username, password, firstName, lastName) {
         this.username = username;

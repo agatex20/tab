@@ -11,7 +11,7 @@
  */
 
 export interface UserUpdateDTO { 
-    userId?: string;
+    userId: string;
     email?: string;
     password?: string;
     firstName?: string;
