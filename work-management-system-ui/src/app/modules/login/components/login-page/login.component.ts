@@ -84,6 +84,7 @@ export class LoginComponent implements OnInit {
         //zle dane logowania
         error: (error) => {
           console.log('zle dane logowania');
+          alert('zle dane logowania');
           this.loading = false;
         },
       });
