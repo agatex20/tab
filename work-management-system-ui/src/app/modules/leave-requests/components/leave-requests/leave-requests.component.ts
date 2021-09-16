@@ -13,12 +13,12 @@ declare var $: any;
 @Component({
   selector: 'app-leave-requests',
   templateUrl: './leave-requests.component.html',
-  styleUrls: ['./leave-requests.component.css']
+  styleUrls: ['./leave-requests.component.css'],
 })
 export class LeaveRequestsComponent implements OnInit {
-  requests: AbsenceUpdateDTO[];
-  employees: UserUpdateDTO[];
-  absenceTypes: AbsenceTypeUpdateDTO[];
+  requests: AbsenceUpdateDTO[] = [];
+  employees: UserUpdateDTO[] = [];
+  absenceTypes: AbsenceTypeUpdateDTO[] = [];
   title: string = 'Prośby o urlop:';
 
   constructor(
@@ -26,7 +26,7 @@ export class LeaveRequestsComponent implements OnInit {
     private absenceService: AbsencesService,
     private alertService: AlertService,
     private absenceTypeService: AbsenceTypeService
-    ) {}
+  ) {}
 
   ngOnInit(): void {
     this.loadRequests();
@@ -36,76 +36,80 @@ export class LeaveRequestsComponent implements OnInit {
 
   onSubmit(absence: AbsenceUpdateDTO) {
     absence.confirmed = true;
-    this.absenceService.update(absence)
+    this.absenceService
+      .update(absence)
       .pipe(first())
       .subscribe(
-        data => {
-          this.alertService.success("Zatwierdzono");
+        (data) => {
+          this.alertService.success('Zatwierdzono');
           location.reload();
         },
-        error => {
+        (error) => {
           this.alertService.error(error);
-        });
+        }
+      );
   }
 
   onReject(absenceId: string) {
-    this.absenceService.delete(absenceId)
+    this.absenceService
+      .delete(absenceId)
       .pipe(first())
       .subscribe(
-        data => {
-          this.alertService.success("Usunięto");
+        (data) => {
+          this.alertService.success('Usunięto');
           location.reload();
         },
-        error => {
+        (error) => {
           this.alertService.error(error);
-        });
+        }
+      );
   }
-  
+
   loadRequests() {
-    this.absenceService.getActive()
+    this.absenceService
+      .getActive()
       .pipe(first())
-      .subscribe(requests => this.requests = requests);
+      .subscribe((requests) => (this.requests = requests));
   }
 
   loadEmployees() {
-    this.userService.getAll()
+    this.userService
+      .getAll()
       .pipe(first())
-      .subscribe(employees => this.employees = employees);
+      .subscribe((employees) => (this.employees = employees));
   }
 
   loadAbsenceTypes() {
-    this.absenceTypeService.getAll()
+    this.absenceTypeService
+      .getAll()
       .pipe(first())
-      .subscribe(absenceTypes => this.absenceTypes = absenceTypes);
+      .subscribe((absenceTypes) => (this.absenceTypes = absenceTypes));
   }
 
   getTypeName(id: string) {
-    const type =  this.absenceTypes.find((type) => type.absenceTypeId === id)
+    const type = this.absenceTypes.find((type) => type.absenceTypeId === id);
     if (!type) {
-      return ''
+      return '';
     }
     return this.translate(type.name);
   }
 
   getUsername(id: string) {
-    const username = this.employees.find((username) => username.userId === id)
+    const username = this.employees.find((username) => username.userId === id);
     if (!username) {
-      return ''
+      return '';
     }
     return username.firstName + ' ' + username.lastName;
   }
 
   getDate(date: string) {
-    return date.substring(0,10);
+    return date.substring(0, 10);
   }
 
   translate(word: string) {
-    if(word==='maternity')
-      return 'urlop macierzyński';
-    if(word==='vacation')
-      return 'urlop wypoczynkowy';
-    if(word==='on demand')
-      return 'urlop na żądanie';;
+    if (word === 'maternity') return 'urlop macierzyński';
+    if (word === 'vacation') return 'urlop wypoczynkowy';
+    if (word === 'on demand') return 'urlop na żądanie';
     return word;
   }
 }

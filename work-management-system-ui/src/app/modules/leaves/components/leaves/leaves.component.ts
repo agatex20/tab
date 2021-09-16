@@ -11,70 +11,68 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-leaves',
   templateUrl: './leaves.component.html',
-  styleUrls: ['./leaves.component.css']
+  styleUrls: ['./leaves.component.css'],
 })
 export class LeavesComponent implements OnInit {
   employees: UserUpdateDTO[];
   title: string = 'Moje urlopy:';
   selectedType: string;
-  absences: Absence[];
+  absences: Absence[] = [];
   absenceTypes: AbsenceTypeUpdateDTO[];
-  
+
   constructor(
     private userService: UsersService,
     private absenceTypeService: AbsenceTypeService,
     private absencesService: AbsencesService,
     private authService: AuthService
-  ){
+  ) {
     this.loadEmployees();
     this.loadAbsenceTypes();
-}
-  
+  }
+
   ngOnInit() {
     this.loadAbsences(this.authService.loggedUser.userId);
   }
 
   loadEmployees() {
-    this.userService.getAll()
+    this.userService
+      .getAll()
       .pipe(first())
-      .subscribe(employees => this.employees = employees);
+      .subscribe((employees) => (this.employees = employees));
   }
 
   loadAbsences(userId: string) {
-    this.absencesService.getFromWorker(userId)
+    this.absencesService
+      .getFromWorker(userId)
       .pipe(first())
-      .subscribe(absences => this.absences = absences);
+      .subscribe((absences) => (this.absences = absences));
   }
 
   loadAbsenceTypes() {
-    this.absenceTypeService.getAll()
+    this.absenceTypeService
+      .getAll()
       .pipe(first())
-      .subscribe(absenceTypes => this.absenceTypes = absenceTypes);
+      .subscribe((absenceTypes) => (this.absenceTypes = absenceTypes));
   }
 
   getTypeName(id: string) {
-    const type =  this.absenceTypes.find((type) => type.absenceTypeId === id)
+    const type = this.absenceTypes.find((type) => type.absenceTypeId === id);
     if (!type) {
-      return ''
+      return '';
     }
     return this.translate(type.name);
   }
 
   translate(word: string) {
-    if(word==='maternity')
-      return 'urlop macierzyński';
-    if(word==='vacation')
-      return 'urlop wypoczynkowy';
-    if(word==='on demand')
-      return 'urlop na żądanie';;
+    if (word === 'maternity') return 'urlop macierzyński';
+    if (word === 'vacation') return 'urlop wypoczynkowy';
+    if (word === 'on demand') return 'urlop na żądanie';
     return word;
   }
 
   translateBool(word: boolean) {
-    if(word==true)
-      return 'tak';
-    if(word==false)
-      return 'nie';
+    if (word == true) return 'tak';
+    if (word == false) return 'nie';
     return '';
   }
 }
