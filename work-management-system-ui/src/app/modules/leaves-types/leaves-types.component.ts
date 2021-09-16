@@ -51,7 +51,7 @@ export class LeavesTypesComponent implements OnInit {
       return 'urlop macierzyński';
     if(word==='vacation')
       return 'urlop wypoczynkowy';
-    if(word==='on demand')
+    if(word==='on-demand')
       return 'urlop na żądanie';;
     return word;
   }

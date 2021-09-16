@@ -24,7 +24,7 @@
 
 </form>
 
-<table class="table" style="margin-top: 20px;">  
+<table class="table" id="my-table" style="margin-top: 20px;">  
     <thead>
         <tr>
             <th >Typ</th>
@@ -35,7 +35,7 @@
     </thead>
     <tbody>
         <tr *ngFor="let a of selectedAbsences">
-            <td>{{getTypeName(a.absenceTypeId)}}</td>
+            <td>{{translate(getTypeName(a.absenceTypeId))}}</td>
             <td>{{a.startDate | date:'shortDate'}}</td>
             <td>{{a.endDate | date:'shortDate'}}</td>
             <td>{{translateBool(a.confirmed)}}</td>

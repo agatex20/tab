@@ -109,7 +109,7 @@ export class LeaveRequestsComponent implements OnInit {
   translate(word: string) {
     if (word === 'maternity') return 'urlop macierzyński';
     if (word === 'vacation') return 'urlop wypoczynkowy';
-    if (word === 'on demand') return 'urlop na żądanie';
+    if (word === 'on-demand') return 'urlop na żądanie';
     return word;
   }
 }

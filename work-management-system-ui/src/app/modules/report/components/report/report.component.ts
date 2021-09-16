@@ -7,6 +7,9 @@ import { UserUpdateDTO } from 'src/app/dto/userUpdateDTO';
 import { UsersService } from 'src/app/services/user.service';
 import { AbsencesService } from 'src/app/services/absences.service';
 
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
+
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
@@ -52,12 +55,8 @@ export class ReportComponent implements OnInit {
         this.selectedAbsences = [];
 
         for (let a of this.absences) {
-          if (
-            !this.startDate ||
-            a.startDate.toDateString() >= this.startDate ||
-            !this.endDate ||
-            a.endDate.toDateString() <= this.endDate
-          ) {
+          if (!(String(a.startDate) > this.endDate && (String(a.endDate) > this.endDate)) &&
+              !(String(a.startDate) < this.startDate && (String(a.endDate) < this.startDate))) {
             this.selectedAbsences.push(a);
           }
         }
@@ -80,7 +79,7 @@ export class ReportComponent implements OnInit {
     if (!type) {
       return '';
     }
-    return this.translate(type.name);
+    return type.name;
   }
 
   loadDaysCount(id: string) {
@@ -93,12 +92,47 @@ export class ReportComponent implements OnInit {
   onSubmit() {
     this.loadAbsences(this.selectedUserId);
     this.loadDaysCount(this.selectedUserId);
+    setTimeout(() => {
+      const doc = new jsPDF();
+      let userInfo = this.getUserInfo(this.selectedUserId);
+      let userText = "Name: " + userInfo.firstName + " " + userInfo.lastName + "\n";
+      userText += "Email: " + userInfo.email + "\n";
+      userText += "Left days of vacation: " + userInfo.vacationDaysCount + "\n";
+      userText += "Absences\n";
+      if(this.startDate) {
+        userText += "From: " + this.startDate + "\n";
+      }
+      if(this.endDate) {
+        userText += "To: " + this.endDate + "\n";
+      }
+      doc.text(userText , 20, 20);
+      if(this.selectedAbsences && this.selectedAbsences.length > 0) {
+        let body: string[][] = this.getAbsenceTable();
+        autoTable(doc, {startY: 70, head: [['Type', 'Start Date', 'End Date', 'Is Approved']], body: body});
+        }
+      doc.save('report_'+ userInfo.firstName + userInfo.lastName + '.pdf');
+    }, 500);
+  }
+
+  getUserInfo(userId: string): UserUpdateDTO {
+    const user = this.employees.find((user) => user.userId === userId);
+    return user;
+  }
+
+  getAbsenceTable(): string[][] {
+    let abs: AbsenceUpdateDTO = this.selectedAbsences[0];
+    let table: string[][] = [[this.getTypeName(abs.absenceTypeId), String(abs.startDate), String(abs.endDate), String(abs.confirmed)]];
+    for (let i=1; i < this.selectedAbsences.length; i++) {
+      abs = this.selectedAbsences[i];
+      table.push([this.getTypeName(abs.absenceTypeId), String(abs.startDate), String(abs.endDate), String(abs.confirmed)])
+    }
+    return table;
   }
 
   translate(word: string) {
     if (word === 'maternity') return 'urlop macierzyński';
     if (word === 'vacation') return 'urlop wypoczynkowy';
-    if (word === 'on demand') return 'urlop na żądanie';
+    if (word === 'on-demand') return 'urlop na żądanie';
     return word;
   }
 
