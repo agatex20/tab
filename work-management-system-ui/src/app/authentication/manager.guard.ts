@@ -16,12 +16,10 @@ export class ManagerGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const currentUser = this.authService.loggedUser;
-    console.log(this.authService.accessLvl);
     if (!currentUser) {
       // logged in so return true
       return false;
     }
-    console.log(this.authService.accessLvl);
     if (
       this.authService.accessLvl === AccessLevelEnum.Manager ||
       this.authService.accessLvl === AccessLevelEnum.Admin

@@ -12,6 +12,7 @@ import { AuthResponse } from 'src/app/dto/authResponse';
 import { RolesService } from 'src/app/services/roles.service';
 import { RoleUpdateDTO } from 'src/app/dto/roleUpdateDTO';
 import { AuthService } from 'src/app/services/auth.service';
+import { AccessLevelEnum } from 'src/app/dto/accessLevelEnum';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
@@ -65,6 +66,10 @@ export class LoginComponent implements OnInit {
       })
       .subscribe({
         next: (authResponse: AuthResponse) => {
+          this.authenticationService.login(
+            authResponse,
+            AccessLevelEnum.Undefined
+          );
           this.rolesService.get(authResponse.loggedUser.roleId).subscribe({
             next: (role: RoleUpdateDTO) => {
               this.authenticationService.login(authResponse, role.accessLevel);
